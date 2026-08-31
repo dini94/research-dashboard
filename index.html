@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hdini.com | Multi-Molecule Computational & Photovoltaic Dashboard</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- 3Dmol.js for 3D XYZ & Cube Molecular Orbitals Viewer -->
     <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+    <!-- MathJax for Scientific Equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -22,6 +26,7 @@
 </head>
 <body class="bg-slate-50 text-gray-800 font-sans" onload="initDashboard()">
 
+    <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
@@ -37,8 +42,10 @@
         </div>
     </header>
 
+    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-6 py-8">
 
+        <!-- HERO HEADER -->
         <section class="mb-8 text-center py-10 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl shadow-xl px-6">
             <span class="bg-blue-500/30 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Multi-Dye Comparative Platform</span>
             <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-2" contenteditable="true">DFT/TD-DFT Multi-Molecule Photovoltaic Screening</h2>
@@ -47,6 +54,7 @@
             </p>
         </section>
 
+        <!-- 3. MULTI-MOLECULE GRID GALLERY & UPLOAD STUDIO -->
         <section id="structures" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Multi-Molecule 3D Geometry Studio (Max 5 Molecules)
@@ -61,37 +69,46 @@
             </div>
 
             <div id="moleculeGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                </div>
+                <!-- Dynamic cards populated via JavaScript -->
+            </div>
         </section>
 
+        <!-- 5. MO & REACTIVITY METRICS (CUBE / ORBITAL & DIAGRAM & TABLE) -->
         <section id="mo-analysis" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
-                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Frontier Molecular Orbitals (HOMO/LUMO) & Reactivity Table
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Frontier Molecular Orbitals (HOMO/LUMO) & Reactivity Analysis
             </h3>
 
-            <div class="mb-6 bg-slate-50 p-4 rounded-lg border">
-                <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(1) Volumetric Orbital Viewer (.CUBE / Image Iso-surfaces)</h4>
-                <div class="grid md:grid-cols-12 gap-4 items-center">
-                    <div class="md:col-span-4 space-y-3">
-                        <div class="input-group">
-                            <label>Upload Molecular Orbital Density File (.cube):</label>
-                            <input type="file" id="cubeFileInput" accept=".cube" onchange="loadCubeOrbital(event)" class="bg-white">
-                        </div>
-                        <p class="text-[11px] text-gray-500">Mendukung file Gaussian/ORCA <code>.cube</code> atau <code>.gbw</code> (dikonversi ke cube) untuk merender iso-surface orbital HOMO/LUMO secara 3D.</p>
+            <!-- (1) Orbitals Surface Upload / Viewer & Energy Level Diagram -->
+            <div class="mb-6 grid md:grid-cols-12 gap-6">
+                <!-- Left: CUBE Upload & Volumetric Viewer -->
+                <div class="md:col-span-7 bg-slate-50 p-4 rounded-lg border">
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(1) Volumetric Orbital Viewer (.CUBE Files)</h4>
+                    <div class="input-group mb-3">
+                        <label>Upload HOMO / LUMO Density File (.cube):</label>
+                        <input type="file" id="cubeFileInput" accept=".cube" onchange="loadCubeOrbital(event)" class="bg-white">
                     </div>
-                    <div class="md:col-span-8 flex gap-4">
-                        <div class="flex-1 border rounded bg-white p-2 text-center">
-                            <span class="text-xs font-bold text-gray-700 block mb-1">HOMO Orbital Surface</span>
-                            <div id="homoCubeViewer" class="w-full h-44 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Load .cube file or view ISO</div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="border rounded bg-white p-2 text-center">
+                            <span class="text-xs font-bold text-gray-700 block mb-1">HOMO Iso-surface</span>
+                            <div id="homoCubeViewer" class="w-full h-48 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Upload .cube file</div>
                         </div>
-                        <div class="flex-1 border rounded bg-white p-2 text-center">
-                            <span class="text-xs font-bold text-gray-700 block mb-1">LUMO Orbital Surface</span>
-                            <div id="lumoCubeViewer" class="w-full h-44 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Load .cube file or view ISO</div>
+                        <div class="border rounded bg-white p-2 text-center">
+                            <span class="text-xs font-bold text-gray-700 block mb-1">LUMO Iso-surface</span>
+                            <div id="lumoCubeViewer" class="w-full h-48 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Upload .cube file</div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Right: HOMO-LUMO Energy Level Diagram -->
+                <div class="md:col-span-5 border rounded-lg p-3 bg-white flex flex-col justify-between">
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">Orbital Energy Levels & Egap Diagram</h4>
+                    <div id="moEnergyChart" class="w-full h-64"></div>
+                    <span class="text-[10px] text-gray-400 text-center block">Energy Gap ($E_{gap} = E_{LUMO} - E_{HOMO}$)</span>
                 </div>
             </div>
 
+            <!-- (2) Table of Chemical Reactivity Descriptors -->
             <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(2) Multi-Molecule Chemical Reactivity Descriptors Table</h4>
             <div class="overflow-x-auto">
                 <table class="w-full text-xs text-left border">
@@ -100,7 +117,7 @@
                             <th class="p-2.5 border">Molecule</th>
                             <th class="p-2.5 border">HOMO (eV)</th>
                             <th class="p-2.5 border">LUMO (eV)</th>
-                            <th class="p-2.5 border">Band Gap $E_g$ (eV)</th>
+                            <th class="p-2.5 border font-bold text-yellow-300">Band Gap $E_g$ (eV)</th>
                             <th class="p-2.5 border">IP (eV)</th>
                             <th class="p-2.5 border">EA (eV)</th>
                             <th class="p-2.5 border">Electronegativity ($\chi$)</th>
@@ -109,38 +126,46 @@
                         </tr>
                     </thead>
                     <tbody id="reactivityTableBody" class="divide-y text-gray-700 bg-white">
-                        </tbody>
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
                 </table>
             </div>
         </section>
 
+        <!-- 6. SPECTRA: SIMULATED VS EXPERIMENTAL (ABSORPTION FIRST, THEN LHE) -->
         <section id="spectra" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">6</span> Electronic Spectra: Absorption & LHE Comparison
             </h3>
             <div class="grid md:grid-cols-2 gap-6">
+                <!-- (4) Absorption Spectra Simulated vs Exp (FIRST) -->
+                <div class="border rounded-lg p-3 bg-white">
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(4) UV-Vis Absorption Spectra: Simulated vs Experimental</h4>
+                    <div id="absorptionSpectraChart" class="w-full h-72"></div>
+                </div>
+
+                <!-- (3) LHE Spectra (SECOND) -->
                 <div class="border rounded-lg p-3 bg-white">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(3) Light Harvesting Efficiency (LHE) Spectra</h4>
                     <div id="lheSpectraChart" class="w-full h-72"></div>
                 </div>
-                <div class="border rounded-lg p-3 bg-white">
-                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(4) UV-Vis Absorption: Simulated (TD-DFT) vs Experimental</h4>
-                    <div id="absorptionSpectraChart" class="w-full h-72"></div>
-                </div>
             </div>
         </section>
 
+        <!-- 7. PV PERFORMANCE: J-V CURVES & COMPARISON TABLE -->
         <section id="pv-performance" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">7</span> Photovoltaic Characterization (J-V & Parameters)
             </h3>
             
             <div class="grid md:grid-cols-12 gap-6 mb-6">
+                <!-- (5) J-V Curves Plot -->
                 <div class="md:col-span-7 border rounded-lg p-3 bg-white">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(5) J-V Characteristic Curves: Simulated vs Experimental</h4>
                     <div id="jvChart" class="w-full h-80"></div>
                 </div>
 
+                <!-- Live Input Parameter Editor -->
                 <div class="md:col-span-5 bg-slate-50 p-4 rounded-lg border">
                     <h4 class="font-bold text-xs text-gray-700 uppercase mb-3 border-b pb-1">Modify Parameters for Primary Molecule</h4>
                     <div class="grid grid-cols-2 gap-2">
@@ -155,6 +180,7 @@
                 </div>
             </div>
 
+            <!-- (6) Photovoltaic Parameters Table -->
             <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(6) Experimental vs Theoretical Photovoltaic Parameters Table</h4>
             <div class="overflow-x-auto">
                 <table class="w-full text-xs text-left border">
@@ -176,13 +202,15 @@
                         </tr>
                     </thead>
                     <tbody id="pvTableBody" class="divide-y text-gray-700 bg-white">
-                        </tbody>
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
                 </table>
             </div>
         </section>
 
     </main>
 
+    <!-- JavaScript Engine -->
     <script>
         // Global Multi-Molecule Database
         let moleculeDatabase = [
@@ -225,7 +253,6 @@
                         }
                     }, 100);
 
-                    // Add dummy entry to database if new file uploaded
                     if (!moleculeDatabase[idx]) {
                         moleculeDatabase.push({
                             name: file.name, homo: -5.50 - idx*0.1, lumo: -2.90 - idx*0.1,
@@ -269,28 +296,66 @@
             }, 100);
         }
 
-        // Load Orbital .CUBE File
+        // Render Volumetric .CUBE Orbital Surfaces (HOMO & LUMO)
         function loadCubeOrbital(event) {
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = function(e) {
                 const cubeData = e.target.result;
-                renderCubeViewer('homoCubeViewer', cubeData, 0.02);
-                renderCubeViewer('lumoCubeViewer', cubeData, -0.02);
+                renderSingleCube('homoCubeViewer', cubeData, 0.02, 'blue', 'red');
+                renderSingleCube('lumoCubeViewer', cubeData, -0.02, 'cyan', 'orange');
             };
             reader.readAsText(file);
         }
 
-        function renderCubeViewer(elemId, cubeData, isoVal) {
-            const container = document.getElementById(elemId);
+        function renderSingleCube(containerId, cubeData, isoval, color1, color2) {
+            const container = document.getElementById(containerId);
             container.innerHTML = '';
+            
             const viewer = $3Dmol.createViewer(container, { backgroundColor: 'white' });
             viewer.addModel(cubeData, "cube");
-            viewer.setStyle({}, { stick: { radius: 0.12 } });
-            viewer.addIsosurface(cubeData, { isoval: isoVal, color: isoVal > 0 ? 'blue' : 'red', opacity: 0.75 });
+            viewer.setStyle({}, { stick: { radius: 0.12 }, sphere: { scale: 0.2 } });
+            
+            // Render dual phase iso-surfaces (+/-)
+            viewer.addIsosurface(cubeData, { isoval: Math.abs(isoval), color: color1, opacity: 0.75 });
+            viewer.addIsosurface(cubeData, { isoval: -Math.abs(isoval), color: color2, opacity: 0.75 });
+            
             viewer.zoomTo();
             viewer.render();
+        }
+
+        // Generate HOMO-LUMO Energy Ladder Diagram
+        function generateMOEnergyChart() {
+            let traces = [];
+            moleculeDatabase.forEach((m, idx) => {
+                const xPos = idx + 1;
+                // HOMO Line
+                traces.push({
+                    x: [xPos - 0.25, xPos + 0.25], y: [m.homo, m.homo],
+                    mode: 'lines+text', name: `${m.name} HOMO`,
+                    line: { color: '#1e40af', width: 4 },
+                    text: [`${m.homo.toFixed(2)} eV`, ''], textposition: 'bottom center'
+                });
+                // LUMO Line
+                traces.push({
+                    x: [xPos - 0.25, xPos + 0.25], y: [m.lumo, m.lumo],
+                    mode: 'lines+text', name: `${m.name} LUMO`,
+                    line: { color: '#dc2626', width: 4 },
+                    text: [`${m.lumo.toFixed(2)} eV`, ''], textposition: 'top center'
+                });
+            });
+
+            const layout = {
+                showlegend: false,
+                margin: { t: 25, b: 35, l: 45, r: 15 },
+                yaxis: { title: 'Energy (eV)', zeroline: false },
+                xaxis: { 
+                    tickvals: moleculeDatabase.map((_, i) => i + 1),
+                    ticktext: moleculeDatabase.map(m => m.name.split(' ')[0])
+                }
+            };
+            Plotly.newPlot('moEnergyChart', traces, layout, {responsive: true});
         }
 
         // Generate Reactivity Table (2)
@@ -316,11 +381,11 @@
             }).join('');
         }
 
-        // Generate LHE (3) & UV-Vis (4) Spectra Plots
+        // Generate Spectra Plots: (4) Absorption First, (3) LHE Second
         function generateSpectraPlots() {
             let lheTraces = [], absTraces = [];
 
-            moleculeDatabase.forEach((m, idx) => {
+            moleculeDatabase.forEach((m) => {
                 let x = [], ySim = [], yExp = [], lheY = [];
                 for (let w = 300; w <= 750; w += 2) {
                     x.push(w);
@@ -331,18 +396,17 @@
                     lheY.push(1 - Math.pow(10, -simVal));
                 }
 
-                lheTraces.push({ x: x, y: lheY, name: `${m.name} (LHE)`, mode: 'lines' });
                 absTraces.push({ x: x, y: ySim, name: `${m.name} (Sim)`, mode: 'lines' });
                 absTraces.push({ x: x, y: yExp, name: `${m.name} (Exp)`, mode: 'lines', line: { dash: 'dot' } });
+                lheTraces.push({ x: x, y: lheY, name: `${m.name} (LHE)`, mode: 'lines' });
             });
 
-            Plotly.newPlot('lheSpectraChart', lheTraces, { margin: { t: 20, b: 35, l: 35, r: 15 }, legend: { orientation: 'h', font: { size: 9 } } }, {responsive: true});
             Plotly.newPlot('absorptionSpectraChart', absTraces, { margin: { t: 20, b: 35, l: 35, r: 15 }, legend: { orientation: 'h', font: { size: 9 } } }, {responsive: true});
+            Plotly.newPlot('lheSpectraChart', lheTraces, { margin: { t: 20, b: 35, l: 35, r: 15 }, legend: { orientation: 'h', font: { size: 9 } } }, {responsive: true});
         }
 
         // Generate J-V Curves (5) & PV Table (6)
         function generatePVPerformance() {
-            // Read active inputs for primary dye
             moleculeDatabase[0].simVoc = parseFloat(document.getElementById('simVoc').value);
             moleculeDatabase[0].expVoc = parseFloat(document.getElementById('expVoc').value);
             moleculeDatabase[0].simJsc = parseFloat(document.getElementById('simJsc').value);
@@ -358,7 +422,6 @@
                 const simPce = m.simJsc * m.simVoc * m.simFF;
                 const expPce = m.expJsc * m.expVoc * m.expFF;
 
-                // J-V Sim Curve
                 let vSim = [], jSim = [];
                 for (let v = 0; v <= m.simVoc; v += 0.02) {
                     vSim.push(v);
@@ -366,7 +429,6 @@
                 }
                 jvTraces.push({ x: vSim, y: jSim, name: `${m.name} (Sim)`, mode: 'lines' });
 
-                // J-V Exp Curve
                 let vExp = [], jExp = [];
                 for (let v = 0; v <= m.expVoc; v += 0.02) {
                     vExp.push(v);
@@ -374,7 +436,6 @@
                 }
                 jvTraces.push({ x: vExp, y: jExp, name: `${m.name} (Exp)`, mode: 'lines', line: { dash: 'dot' } });
 
-                // PV Table Row
                 tbody.innerHTML += `<tr class="hover:bg-gray-50">
                     <td class="p-2.5 border font-semibold text-blue-900">${m.name}</td>
                     <td class="p-2 border">${m.simVoc.toFixed(2)}</td>
@@ -392,6 +453,7 @@
         }
 
         function recalculateAllData() {
+            generateMOEnergyChart();
             generateReactivityTable();
             generateSpectraPlots();
             generatePVPerformance();
