@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hdini.com | Multi-Molecule Computational & Photovoltaic Dashboard</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-    <!-- 3Dmol.js for 3D XYZ & Cube Molecular Orbitals Viewer -->
     <script src="https://3dmol.org/build/3Dmol-min.js"></script>
-    <!-- MathJax for Scientific Equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -26,26 +22,26 @@
 </head>
 <body class="bg-slate-50 text-gray-800 font-sans" onload="initDashboard()">
 
-    <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-bold text-blue-900 tracking-tight">hdini.com</h1>
-                <p class="text-xs text-gray-500">Interactive Multi-Molecule Quantum Chemical & Photovoltaic Dashboard</p>
+                <p class="text-xs text-gray-500">Interactive Quantum Chemical & Photovoltaic Research Dashboard</p>
             </div>
             <nav class="hidden lg:flex space-x-1">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#architecture" class="nav-link">Architecture</a>
                 <a href="#structures" class="nav-link">3D Structures</a>
+                <a href="#computational" class="nav-link">DFT Methods</a>
                 <a href="#mo-analysis" class="nav-link">MO & Reactivity</a>
-                <a href="#spectra" class="nav-link">Absorption & LHE</a>
+                <a href="#spectra" class="nav-link">Spectra</a>
                 <a href="#pv-performance" class="nav-link">J-V & PV Data</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-6 py-8">
 
-        <!-- HERO HEADER -->
         <section class="mb-8 text-center py-10 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl shadow-xl px-6">
             <span class="bg-blue-500/30 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Multi-Dye Comparative Platform</span>
             <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-2" contenteditable="true">DFT/TD-DFT Multi-Molecule Photovoltaic Screening</h2>
@@ -54,7 +50,57 @@
             </p>
         </section>
 
-        <!-- 3. MULTI-MOLECULE GRID GALLERY & UPLOAD STUDIO -->
+        <section id="overview" class="card">
+            <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">1</span> Research Overview & Objectives
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6 text-xs text-gray-600">
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-blue-900 uppercase mb-2">Molecular Design Strategy</h4>
+                    <p contenteditable="true">Development of novel organic metal-free sensitizers utilizing $D-\pi-A$ and $D-A_2-\pi-A_1$ architectures to enhance light harvesting efficiency in Dye-Sensitized Solar Cells (DSSCs).</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-blue-900 uppercase mb-2">Computational Framework</h4>
+                    <p contenteditable="true">Density Functional Theory (DFT) and Time-Dependent DFT (TD-DFT) simulations at the B3LYP/6-31G(d,p) level to evaluate electronic transitions and frontier orbital alignments.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-blue-900 uppercase mb-2">Experimental Validation</h4>
+                    <p contenteditable="true">Comparative benchmarking of theoretical $V_{oc}$, $J_{sc}$, and $PCE$ parameters against experimental characterization data for precise model calibration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="card">
+            <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">2</span> Investigated Molecular Structures & Architecture
+            </h3>
+            <p class="text-xs text-gray-600 mb-4" contenteditable="true">This research evaluates a series of newly designed metal-free organic sensitizers incorporating a $D-A_2-\pi-A_1$ architecture compared against a baseline $D-\pi-A$ reference dye.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-center items-center">
+                    <span class="text-xs font-bold text-gray-700 uppercase mb-3">Molecular Architecture Schematic</span>
+                    <div class="flex items-center gap-2 font-mono text-xs font-bold">
+                        <div class="bg-blue-100 border border-blue-400 text-blue-800 px-3 py-2 rounded shadow-sm text-center">Donor<br><span class="text-[10px] font-normal">(D)</span></div>
+                        <span>—</span>
+                        <div class="bg-amber-100 border border-amber-400 text-amber-800 px-3 py-2 rounded shadow-sm text-center">Aux-Acceptor<br><span class="text-[10px] font-normal">($A_2$)</span></div>
+                        <span>—</span>
+                        <div class="bg-emerald-100 border border-emerald-400 text-emerald-800 px-3 py-2 rounded shadow-sm text-center">$\pi$-Bridge<br><span class="text-[10px] font-normal">($\pi$)</span></div>
+                        <span>—</span>
+                        <div class="bg-rose-100 border border-rose-400 text-rose-800 px-3 py-2 rounded shadow-sm text-center">Anchoring Group<br><span class="text-[10px] font-normal">($A_1$)</span></div>
+                    </div>
+                    <span class="text-[10px] text-gray-400 mt-4 text-center">Conceptual $D-A_2-\pi-A_1$ push-pull framework designed to facilitate directional intramolecular charge transfer.</span>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs space-y-2">
+                    <h4 class="font-bold text-gray-800 uppercase border-b pb-1">Structural Fragments</h4>
+                    <p contenteditable="true"><strong>• Electron Donor (D):</strong> Triphenylamine (TPA) / Phenothiazine derivative possessing strong electron-donating capability and non-planar geometry to minimize dye aggregation.</p>
+                    <p contenteditable="true"><strong>• Auxiliary Acceptor ($A_2$):</strong> Benzothiadiazole / Thiazole ring introduced to tune the HOMO-LUMO gap and enhance broad light response.</p>
+                    <p contenteditable="true"><strong>• $\pi$-Conjugated Spacer:</strong> Thiophene / Benzothiophene bridge facilitating efficient electron transport across the backbone.</p>
+                    <p contenteditable="true"><strong>• Anchoring Acceptor ($A_1$):</strong> Cyanoacrylic acid group enabling chemical binding onto the $\text{TiO}_2$ surface and direct electron injection into semiconductor Conduction Band.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="structures" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Multi-Molecule 3D Geometry Studio (Max 5 Molecules)
@@ -69,19 +115,41 @@
             </div>
 
             <div id="moleculeGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <!-- Dynamic cards populated via JavaScript -->
+                </div>
+        </section>
+
+        <section id="computational" class="card">
+            <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">4</span> Computational Details & Quantum Chemical Methodology
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6 text-xs">
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-blue-900 uppercase">DFT Parameterization</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li><strong>Software Package:</strong> Gaussian 16 / ORCA Quantum Chemistry Suite</li>
+                        <li><strong>Functional / Basis Set:</strong> B3LYP / 6-31G(d,p) for structural optimizations</li>
+                        <li><strong>Solvation Model:</strong> Conductor-like Polarizable Continuum Model (CPCM, $\text{CH}_2\text{Cl}_2$ / Ethanol)</li>
+                        <li><strong>Convergence Criteria:</strong> Tight SCF convergence ($10^{-8}\text{ a.u.}$) and force tolerance</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-blue-900 uppercase">TD-DFT & Photovoltaic Calculations</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600">
+                        <li><strong>Excitation States:</strong> 20 lowest singlet-to-singlet electronic transitions</li>
+                        <li><strong>Light Harvesting Efficiency:</strong> $\text{LHE} = 1 - 10^{-f}$ (where $f$ is oscillator strength)</li>
+                        <li><strong>Chemical Hardness ($\eta$):</strong> $\eta = \frac{I - A}{2} = \frac{E_{\text{LUMO}} - E_{\text{HOMO}}}{2}$</li>
+                        <li><strong>Electrophilicity Index ($\omega$):</strong> $\omega = \frac{\mu^2}{2\eta}$</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- 5. MO & REACTIVITY METRICS (CUBE / IMAGE ORBITAL & DIAGRAM & TABLE) -->
         <section id="mo-analysis" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Frontier Molecular Orbitals (HOMO/LUMO) & Reactivity Analysis
             </h3>
 
-            <!-- (1) Orbitals Surface Upload / Viewer & Energy Level Diagram -->
             <div class="mb-6 grid md:grid-cols-12 gap-6">
-                <!-- Left: Orbital Display (Supports Direct Image Upload & .CUBE) -->
                 <div class="md:col-span-7 bg-slate-50 p-4 rounded-lg border">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(1) Frontier Orbital Visualizer (Image / .CUBE)</h4>
                     
@@ -116,7 +184,6 @@
                     </div>
                 </div>
 
-                <!-- Right: HOMO-LUMO Energy Level & Egap Ladder Diagram -->
                 <div class="md:col-span-5 border rounded-lg p-3 bg-white flex flex-col justify-between">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">Orbital Energy Levels & Egap Diagram</h4>
                     <div id="moEnergyChart" class="w-full h-64"></div>
@@ -124,7 +191,6 @@
                 </div>
             </div>
 
-            <!-- (2) Table of Chemical Reactivity Descriptors -->
             <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(2) Multi-Molecule Chemical Reactivity Descriptors Table</h4>
             <div class="overflow-x-auto">
                 <table class="w-full text-xs text-left border">
@@ -142,25 +208,21 @@
                         </tr>
                     </thead>
                     <tbody id="reactivityTableBody" class="divide-y text-gray-700 bg-white">
-                        <!-- Populated dynamically via JS -->
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 6. SPECTRA: SIMULATED VS EXPERIMENTAL (ABSORPTION 3, LHE 4) -->
         <section id="spectra" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">6</span> Electronic Spectra: Absorption & LHE Comparison
             </h3>
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- (3) Absorption Spectra Simulated vs Exp -->
                 <div class="border rounded-lg p-3 bg-white">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(3) UV-Vis Absorption Spectra: Simulated vs Experimental</h4>
                     <div id="absorptionSpectraChart" class="w-full h-72"></div>
                 </div>
 
-                <!-- (4) LHE Spectra -->
                 <div class="border rounded-lg p-3 bg-white">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(4) Light Harvesting Efficiency (LHE) Spectra</h4>
                     <div id="lheSpectraChart" class="w-full h-72"></div>
@@ -168,20 +230,17 @@
             </div>
         </section>
 
-        <!-- 7. PV PERFORMANCE: J-V CURVES & COMPARISON TABLE -->
         <section id="pv-performance" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">7</span> Photovoltaic Characterization (J-V & Parameters)
             </h3>
             
             <div class="grid md:grid-cols-12 gap-6 mb-6">
-                <!-- (5) J-V Curves Plot -->
                 <div class="md:col-span-7 border rounded-lg p-3 bg-white">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(5) J-V Characteristic Curves: Simulated vs Experimental</h4>
                     <div id="jvChart" class="w-full h-80"></div>
                 </div>
 
-                <!-- Live Input Parameter Editor -->
                 <div class="md:col-span-5 bg-slate-50 p-4 rounded-lg border">
                     <h4 class="font-bold text-xs text-gray-700 uppercase mb-3 border-b pb-1">Modify Parameters for Primary Molecule</h4>
                     <div class="grid grid-cols-2 gap-2">
@@ -196,7 +255,6 @@
                 </div>
             </div>
 
-            <!-- (6) Photovoltaic Parameters Table -->
             <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(6) Experimental vs Theoretical Photovoltaic Parameters Table</h4>
             <div class="overflow-x-auto">
                 <table class="w-full text-xs text-left border">
@@ -218,15 +276,13 @@
                         </tr>
                     </thead>
                     <tbody id="pvTableBody" class="divide-y text-gray-700 bg-white">
-                        <!-- Populated dynamically via JS -->
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
         </section>
 
     </main>
 
-    <!-- JavaScript Engine -->
     <script>
         // Global Multi-Molecule Database
         let moleculeDatabase = [
