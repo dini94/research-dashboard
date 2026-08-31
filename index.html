@@ -126,50 +126,60 @@
 
         <!-- 3. INVESTIGATED MOLECULAR STRUCTURE (INTERACTIVE VIEWER) -->
         <section id="structures" class="card">
-            <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
-                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Investigated Molecular Structures & Interactive Viewer
-            </h3>
-            <p class="text-sm text-gray-600 mb-6" contenteditable="true">
-                Input a SMILES string to render 2D molecular structures or upload an `.xyz` coordinate file to visualize the 3D geometry of designed sensitizers in real-time.
-            </p>
+    <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
+        <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Multi-Molecule Structural Library & Viewer
+    </h3>
+    <p class="text-sm text-gray-600 mb-6" contenteditable="true">
+        Select a dye molecule from your library, add new SMILES strings to the collection, or upload 3D .XYZ files to compare structural frameworks ($D-\pi-A$ vs $D-A_2-\pi-A_1$).
+    </p>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Interactive Structure Viewer Panel -->
-                <div class="border rounded-lg p-4 bg-gray-50 flex flex-col items-center">
-                    <span class="text-xs font-bold text-gray-500 mb-2 uppercase">Molecular Viewer Studio</span>
-                    
-                    <div class="w-full space-y-2 mb-3 text-xs">
-                        <div>
-                            <label class="font-semibold block mb-1">Input SMILES String (2D):</label>
-                            <div class="flex gap-1">
-                                <input type="text" id="smilesInput" value="c1ccc(cc1)N(c2ccccc2)c3ccc(cc3)C=C(C#N)C(=O)O" class="w-full p-2 border rounded text-xs bg-white">
-                                <button onclick="renderSmiles()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded font-semibold transition">Render 2D</button>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="font-semibold block mb-1">Or Upload .XYZ File (3D):</label>
-                            <input type="file" id="xyzFileInput" accept=".xyz" onchange="loadXYZFile(event)" class="w-full text-xs p-1 bg-white border rounded">
-                        </div>
-                    </div>
-
-                    <!-- Rendering Canvas/Viewer Container -->
-                    <div class="w-full bg-white border rounded flex items-center justify-center min-h-[260px] relative overflow-hidden">
-                        <canvas id="smilesCanvas" class="max-w-full max-h-[250px]"></canvas>
-                        <div id="mol3dViewer" class="w-full h-[260px] hidden relative"></div>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">Figure 3.1: Interactive structural verification pane.</p>
+    <div class="grid md:grid-cols-12 gap-6">
+        
+        <div class="md:col-span-5 bg-gray-50 p-4 rounded-lg border flex flex-col justify-between">
+            <div>
+                <h4 class="font-bold text-sm text-gray-700 mb-3 uppercase">Molecule Dataset Library</h4>
+                
+                <div class="input-group mb-4">
+                    <label>Select Active Molecule to Render:</label>
+                    <select id="moleculeSelect" onchange="switchMolecule()" class="w-full p-2 border rounded-md text-sm bg-white font-semibold text-blue-900 focus:ring-2 focus:ring-blue-500">
+                        <option value="c1ccc(cc1)N(c2ccccc2)c3ccc(cc3)C=C(C#N)C(=O)O">Dye-1 (Ref: TPA-Cyanoacrylic)</option>
+                        <option value="c1ccc(N(c2ccccc2)c3ccc(s3)C=C(C#N)C(=O)O)cc1">Dye-2 (TPA-Thiophene-Acceptor)</option>
+                        <option value="c1ccc2c(c1)N(c3ccccc3)c4ccccc4S2">Dye-3 (Phenothiazine Core)</option>
+                    </select>
                 </div>
 
-                <!-- Structural Components Description -->
-                <div class="bg-gray-50 p-4 rounded-lg border text-sm space-y-3" contenteditable="true">
-                    <h4 class="font-bold text-gray-800 text-base border-b pb-1">Structural Fragments & Architecture</h4>
-                    <p><strong>• Electron Donor (D):</strong> Triphenylamine ($TPA$) / Phenothiazine derivative possessing strong electron-donating capability and non-planar geometry to minimize dye aggregation.</p>
-                    <p><strong>• Auxiliary Acceptor ($A_2$):</strong> Benzothiadiazole / Thiazole ring introduced to tune the HOMO-LUMO gap and enhance broad light response.</p>
-                    <p><strong>• $\pi$-Conjugated Spacer:</strong> Thiophene / Benzothiophene bridge facilitating efficient electron transport across the backbone.</p>
-                    <p><strong>• Anchoring Acceptor ($A_1$):</strong> Cyanoacrylic acid group enabling chemical binding onto the $\text{TiO}_2$ surface and direct electron injection into semiconductor Conduction Band.</p>
+                <div class="border-t pt-3 space-y-2">
+                    <span class="text-xs font-bold text-gray-600 block">Add New Molecule to Collection:</span>
+                    <input type="text" id="newMolName" placeholder="Molecule Name (e.g. Dye-4)" class="w-full p-2 border rounded text-xs bg-white">
+                    <input type="text" id="newMolSmiles" placeholder="SMILES String" class="w-full p-2 border rounded text-xs bg-white">
+                    <button onclick="addNewMolecule()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-3 rounded text-xs transition">+ Add to Dataset</button>
                 </div>
             </div>
-        </section>
+
+            <div class="border-t pt-3 mt-4">
+                <label class="text-xs font-bold text-gray-600 block mb-1">Or Load Custom 3D (.XYZ) Structure:</label>
+                <input type="file" id="xyzFileInput" accept=".xyz" onchange="loadXYZFile(event)" class="w-full text-xs p-1 bg-white border rounded">
+            </div>
+        </div>
+
+        <div class="md:col-span-7 border rounded-lg p-4 bg-white flex flex-col items-center justify-center">
+            <div class="w-full flex justify-between items-center mb-2 border-b pb-2">
+                <span id="activeMolTitle" class="font-bold text-sm text-blue-900">Active View: 2D Structure</span>
+                <div class="flex gap-2 text-xs">
+                    <button onclick="toggleViewMode('2d')" class="px-2 py-1 bg-blue-100 text-blue-800 rounded font-semibold">2D Mode</button>
+                    <button onclick="toggleViewMode('3d')" class="px-2 py-1 bg-gray-100 text-gray-700 rounded font-semibold">3D Mode</button>
+                </div>
+            </div>
+
+            <div class="w-full flex items-center justify-center min-h-[280px] relative overflow-hidden bg-slate-50 border rounded">
+                <canvas id="smilesCanvas" class="max-w-full max-h-[270px]"></canvas>
+                <div id="mol3dViewer" class="w-full h-[280px] hidden relative"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Rendered using SmilesDrawer (2D) & 3Dmol.js (3D engine).</p>
+        </div>
+
+    </div>
+</section>
 
         <!-- 4. GOVERNING MATHEMATICAL & COMPUTATIONAL EQUATIONS -->
         <section id="equations" class="card">
