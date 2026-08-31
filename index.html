@@ -73,7 +73,7 @@
             </div>
         </section>
 
-        <!-- 5. MO & REACTIVITY METRICS (CUBE / ORBITAL & DIAGRAM & TABLE) -->
+        <!-- 5. MO & REACTIVITY METRICS (CUBE / IMAGE ORBITAL & DIAGRAM & TABLE) -->
         <section id="mo-analysis" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Frontier Molecular Orbitals (HOMO/LUMO) & Reactivity Analysis
@@ -81,26 +81,42 @@
 
             <!-- (1) Orbitals Surface Upload / Viewer & Energy Level Diagram -->
             <div class="mb-6 grid md:grid-cols-12 gap-6">
-                <!-- Left: CUBE Upload & Volumetric Viewer -->
+                <!-- Left: Orbital Display (Supports Direct Image Upload & .CUBE) -->
                 <div class="md:col-span-7 bg-slate-50 p-4 rounded-lg border">
-                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(1) Volumetric Orbital Viewer (.CUBE Files)</h4>
-                    <div class="input-group mb-3">
-                        <label>Upload HOMO / LUMO Density File (.cube):</label>
-                        <input type="file" id="cubeFileInput" accept=".cube" onchange="loadCubeOrbital(event)" class="bg-white">
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">(1) Frontier Orbital Visualizer (Image / .CUBE)</h4>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div class="input-group">
+                            <label>Upload HOMO Image / .cube:</label>
+                            <input type="file" id="homoFileInput" accept="image/*,.cube" onchange="loadHomoFile(event)" class="bg-white">
+                        </div>
+                        <div class="input-group">
+                            <label>Upload LUMO Image / .cube:</label>
+                            <input type="file" id="lumoFileInput" accept="image/*,.cube" onchange="loadLumoFile(event)" class="bg-white">
+                        </div>
                     </div>
+
                     <div class="grid grid-cols-2 gap-3">
                         <div class="border rounded bg-white p-2 text-center">
                             <span class="text-xs font-bold text-gray-700 block mb-1">HOMO Iso-surface</span>
-                            <div id="homoCubeViewer" class="w-full h-48 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Upload .cube file</div>
+                            <div id="homoViewerContainer" class="w-full h-52 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400 overflow-hidden">
+                                <span id="homoPlaceholder">Upload HOMO Image/Cube</span>
+                                <img id="homoImagePreview" class="hidden max-h-full max-w-full object-contain mx-auto" alt="HOMO Orbital">
+                                <div id="homo3dmol" class="w-full h-full hidden"></div>
+                            </div>
                         </div>
                         <div class="border rounded bg-white p-2 text-center">
                             <span class="text-xs font-bold text-gray-700 block mb-1">LUMO Iso-surface</span>
-                            <div id="lumoCubeViewer" class="w-full h-48 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400">Upload .cube file</div>
+                            <div id="lumoViewerContainer" class="w-full h-52 bg-slate-100 rounded relative border flex items-center justify-center text-xs text-gray-400 overflow-hidden">
+                                <span id="lumoPlaceholder">Upload LUMO Image/Cube</span>
+                                <img id="lumoImagePreview" class="hidden max-h-full max-w-full object-contain mx-auto" alt="LUMO Orbital">
+                                <div id="lumo3dmol" class="w-full h-full hidden"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: HOMO-LUMO Energy Level Diagram -->
+                <!-- Right: HOMO-LUMO Energy Level & Egap Ladder Diagram -->
                 <div class="md:col-span-5 border rounded-lg p-3 bg-white flex flex-col justify-between">
                     <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">Orbital Energy Levels & Egap Diagram</h4>
                     <div id="moEnergyChart" class="w-full h-64"></div>
@@ -132,21 +148,21 @@
             </div>
         </section>
 
-        <!-- 6. SPECTRA: SIMULATED VS EXPERIMENTAL (ABSORPTION FIRST, THEN LHE) -->
+        <!-- 6. SPECTRA: SIMULATED VS EXPERIMENTAL (ABSORPTION 3, LHE 4) -->
         <section id="spectra" class="card">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">6</span> Electronic Spectra: Absorption & LHE Comparison
             </h3>
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- (4) Absorption Spectra Simulated vs Exp (FIRST) -->
+                <!-- (3) Absorption Spectra Simulated vs Exp -->
                 <div class="border rounded-lg p-3 bg-white">
-                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(4) UV-Vis Absorption Spectra: Simulated vs Experimental</h4>
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(3) UV-Vis Absorption Spectra: Simulated vs Experimental</h4>
                     <div id="absorptionSpectraChart" class="w-full h-72"></div>
                 </div>
 
-                <!-- (3) LHE Spectra (SECOND) -->
+                <!-- (4) LHE Spectra -->
                 <div class="border rounded-lg p-3 bg-white">
-                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(3) Light Harvesting Efficiency (LHE) Spectra</h4>
+                    <h4 class="font-bold text-xs text-blue-900 uppercase mb-1">(4) Light Harvesting Efficiency (LHE) Spectra</h4>
                     <div id="lheSpectraChart" class="w-full h-72"></div>
                 </div>
             </div>
@@ -296,59 +312,89 @@
             }, 100);
         }
 
-        // Render Volumetric .CUBE Orbital Surfaces (HOMO & LUMO)
-        function loadCubeOrbital(event) {
-            const file = event.target.files[0];
+        // Handle HOMO File Input (Image or .CUBE)
+        function loadHomoFile(event) {
+            handleOrbitalFile(event.target.files[0], 'homoPlaceholder', 'homoImagePreview', 'homo3dmol', 0.02, 'blue', 'red');
+        }
+
+        // Handle LUMO File Input (Image or .CUBE)
+        function loadLumoFile(event) {
+            handleOrbitalFile(event.target.files[0], 'lumoPlaceholder', 'lumoImagePreview', 'lumo3dmol', -0.02, 'cyan', 'orange');
+        }
+
+        function handleOrbitalFile(file, placeholderId, imgId, viewer3dId, isoval, c1, c2) {
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const cubeData = e.target.result;
-                renderSingleCube('homoCubeViewer', cubeData, 0.02, 'blue', 'red');
-                renderSingleCube('lumoCubeViewer', cubeData, -0.02, 'cyan', 'orange');
-            };
-            reader.readAsText(file);
+            const placeholder = document.getElementById(placeholderId);
+            const img = document.getElementById(imgId);
+            const div3d = document.getElementById(viewer3dId);
+
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    placeholder.classList.add('hidden');
+                    div3d.classList.add('hidden');
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    placeholder.classList.add('hidden');
+                    img.classList.add('hidden');
+                    div3d.classList.remove('hidden');
+                    div3d.innerHTML = '';
+                    
+                    const viewer = $3Dmol.createViewer(div3d, { backgroundColor: 'white' });
+                    viewer.addModel(e.target.result, "cube");
+                    viewer.setStyle({}, { stick: { radius: 0.12 } });
+                    viewer.addIsosurface(e.target.result, { isoval: Math.abs(isoval), color: c1, opacity: 0.7 });
+                    viewer.addIsosurface(e.target.result, { isoval: -Math.abs(isoval), color: c2, opacity: 0.7 });
+                    viewer.zoomTo();
+                    viewer.render();
+                };
+                reader.readAsText(file);
+            }
         }
 
-        function renderSingleCube(containerId, cubeData, isoval, color1, color2) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            
-            const viewer = $3Dmol.createViewer(container, { backgroundColor: 'white' });
-            viewer.addModel(cubeData, "cube");
-            viewer.setStyle({}, { stick: { radius: 0.12 }, sphere: { scale: 0.2 } });
-            
-            // Render dual phase iso-surfaces (+/-)
-            viewer.addIsosurface(cubeData, { isoval: Math.abs(isoval), color: color1, opacity: 0.75 });
-            viewer.addIsosurface(cubeData, { isoval: -Math.abs(isoval), color: color2, opacity: 0.75 });
-            
-            viewer.zoomTo();
-            viewer.render();
-        }
-
-        // Generate HOMO-LUMO Energy Ladder Diagram
+        // Generate Energy Level & Egap Ladder Diagram
         function generateMOEnergyChart() {
             let traces = [];
             moleculeDatabase.forEach((m, idx) => {
                 const xPos = idx + 1;
-                // HOMO Line
+                const gap = m.lumo - m.homo;
+
+                // HOMO Level Line
                 traces.push({
                     x: [xPos - 0.25, xPos + 0.25], y: [m.homo, m.homo],
                     mode: 'lines+text', name: `${m.name} HOMO`,
                     line: { color: '#1e40af', width: 4 },
-                    text: [`${m.homo.toFixed(2)} eV`, ''], textposition: 'bottom center'
+                    text: [`${m.homo.toFixed(2)} eV`, ''], textposition: 'bottom center',
+                    hoverinfo: 'name+y'
                 });
-                // LUMO Line
+
+                // LUMO Level Line
                 traces.push({
                     x: [xPos - 0.25, xPos + 0.25], y: [m.lumo, m.lumo],
                     mode: 'lines+text', name: `${m.name} LUMO`,
                     line: { color: '#dc2626', width: 4 },
-                    text: [`${m.lumo.toFixed(2)} eV`, ''], textposition: 'top center'
+                    text: [`${m.lumo.toFixed(2)} eV`, ''], textposition: 'top center',
+                    hoverinfo: 'name+y'
+                });
+
+                // Egap Vertical Line Indicator
+                traces.push({
+                    x: [xPos, xPos], y: [m.homo + 0.05, m.lumo - 0.05],
+                    mode: 'lines+text', name: `${m.name} Egap`,
+                    line: { color: '#6b7280', width: 1.5, dash: 'dot' },
+                    text: [`Eg = ${gap.toFixed(2)} eV`], textposition: 'middle right',
+                    hoverinfo: 'text'
                 });
             });
 
             const layout = {
                 showlegend: false,
-                margin: { t: 25, b: 35, l: 45, r: 15 },
+                margin: { t: 25, b: 35, l: 45, r: 25 },
                 yaxis: { title: 'Energy (eV)', zeroline: false },
                 xaxis: { 
                     tickvals: moleculeDatabase.map((_, i) => i + 1),
@@ -381,7 +427,7 @@
             }).join('');
         }
 
-        // Generate Spectra Plots: (4) Absorption First, (3) LHE Second
+        // Generate Spectra Plots: (3) Absorption First, (4) LHE Second
         function generateSpectraPlots() {
             let lheTraces = [], absTraces = [];
 
