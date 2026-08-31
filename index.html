@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hdini.com | Interactive Computational Research Dashboard</title>
-    <!-- Tailwind CSS for Modern Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Plotly.js for Interactive Plots -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-    <!-- SmilesDrawer for 2D Molecular Structure Rendering -->
     <script src="https://unpkg.com/smiles-drawer@2.0.1/dist/smiles-drawer.min.js"></script>
-    <!-- 3Dmol.js for 3D XYZ/PDB Molecular Viewer -->
     <script src="https://3dmol.org/build/3Dmol-min.js"></script>
-    <!-- MathJax for Rendering Scientific Equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -20,7 +15,7 @@
         .card { @apply bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8; }
         .input-group { @apply flex flex-col gap-1 mb-3; }
         .input-group label { @apply text-xs font-semibold text-gray-600 uppercase tracking-wider; }
-        .input-group input { @apply px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm; }
+        .input-group input, .input-group select { @apply px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm; }
         [contenteditable="true"] { outline: none; }
         [contenteditable="true"]:hover { background-color: #f8fafc; border-radius: 4px; box-shadow: inset 0 0 0 1px #cbd5e1; }
         [contenteditable="true"]:focus { background-color: #fff; border-radius: 4px; box-shadow: inset 0 0 0 2px #2563eb; }
@@ -28,12 +23,11 @@
 </head>
 <body class="bg-slate-50 text-gray-800 font-sans" onload="initDashboard()">
 
-    <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
-                <h1 class="text-xl font-bold text-blue-900 tracking-tight">hdini</h1>
-                <p class="text-xs text-gray-500">dini024@brin.go.id & dinihayati300194@gmail.com</p>
+                <h1 class="text-xl font-bold text-blue-900 tracking-tight">hdini.com</h1>
+                <p class="text-xs text-gray-500">Interactive Quantum Chemical & Photovoltaic Research Dashboard</p>
             </div>
             <nav class="hidden lg:flex space-x-1">
                 <a href="#background" class="nav-link">Introduction</a>
@@ -47,10 +41,8 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-6 py-8">
 
-        <!-- HERO HEADER -->
         <section class="mb-12 text-center py-12 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl shadow-xl px-6">
             <span class="bg-blue-500/30 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Live Presentation Mode Enabled</span>
             <h2 class="text-3xl md:text-5xl font-extrabold mt-4 mb-3" contenteditable="true">DFT & TD-DFT Design of Novel Organic Dyes</h2>
@@ -59,7 +51,6 @@
             </p>
         </section>
 
-        <!-- 1. RESEARCH BACKGROUND & INTRODUCTION -->
         <section id="background" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">1</span> Research Background & Introduction
@@ -77,7 +68,6 @@
             </div>
         </section>
 
-        <!-- 2. LITERATURE REVIEW (LAST 3 YEARS: 2024 - 2026) -->
         <section id="literature" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">2</span> Literature Review (2024 – 2026)
@@ -99,19 +89,19 @@
                             <td class="p-3 border font-semibold" contenteditable="true">Abdulsalami et al. (2026)</td>
                             <td class="p-3 border" contenteditable="true">Systematic DSSC Progress & Interfacial Kinetics</td>
                             <td class="p-3 border" contenteditable="true">Review Analysis</td>
-                            <td class="p-3 border" contenteditable="true">Highlighted charge recombination at the semiconductor-dye-electrolyte junction as a major bottleneck; emphasized rational dye modification to achieve >14% PCE efficiency threshold.</td>
+                            <td class="p-3 border" contenteditable="true">Highlighted charge recombination at the junction; emphasized rational dye modification to achieve >14% PCE efficiency threshold.</td>
                         </tr>
                         <tr class="hover:bg-gray-50">
                             <td class="p-3 border font-semibold" contenteditable="true">Babu et al. (2024)</td>
                             <td class="p-3 border" contenteditable="true">$D-\pi-A$ Organic Dyes with Diverse $\pi$-Spacers</td>
                             <td class="p-3 border" contenteditable="true">DFT/TD-DFT B3LYP/6-31G(d,p)</td>
-                            <td class="p-3 border" contenteditable="true">Demonstrated that extending $\pi$-conjugation bridges significantly narrows the $E_{gap}$, redshifts absorption peaks, and optimizes electron injection driving force ($\Delta G_{inject}$).</td>
+                            <td class="p-3 border" contenteditable="true">Demonstrated that extending $\pi$-conjugation bridges narrows $E_{gap}$, redshifts absorption peaks, and optimizes electron injection driving force ($\Delta G_{inject}$).</td>
                         </tr>
                         <tr class="hover:bg-gray-50">
                             <td class="p-3 border font-semibold" contenteditable="true">Phenothiazine Study (2025)</td>
                             <td class="p-3 border" contenteditable="true">$D-\pi_1-IA-\pi_2-EA$ Internal Acceptor Engineering</td>
                             <td class="p-3 border" contenteditable="true">DFT (B3P86) / TDDFT (BMK)</td>
-                            <td class="p-3 border" contenteditable="true">Proved that introducing an auxiliary internal acceptor ($IA$) enhances broader spectral response and tunes $V_{oc}$ by stabilizing the LUMO level relative to $\text{TiO}_2$ CB.</td>
+                            <td class="p-3 border" contenteditable="true">Proved that introducing an auxiliary internal acceptor ($IA$) enhances broader spectral response and tunes $V_{oc}$ by stabilizing LUMO level.</td>
                         </tr>
                         <tr class="hover:bg-gray-50">
                             <td class="p-3 border font-semibold" contenteditable="true">TPA-Auxiliary Acceptor Study (2026)</td>
@@ -124,71 +114,63 @@
             </div>
         </section>
 
-        <!-- 3. INVESTIGATED MOLECULAR STRUCTURE (INTERACTIVE VIEWER) -->
         <section id="structures" class="card">
-    <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
-        <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Multi-Molecule Structural Library & Viewer
-    </h3>
-    <p class="text-sm text-gray-600 mb-6" contenteditable="true">
-        Select a dye molecule from your library, add new SMILES strings to the collection, or upload 3D .XYZ files to compare structural frameworks ($D-\pi-A$ vs $D-A_2-\pi-A_1$).
-    </p>
+            <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Multi-Molecule Structural Library & Viewer
+            </h3>
+            <p class="text-sm text-gray-600 mb-6" contenteditable="true">
+                Select a dye molecule from your library, add new SMILES strings to the collection, or upload 3D .XYZ files to compare structural frameworks ($D-\pi-A$ vs $D-A_2-\pi-A_1$).
+            </p>
 
-    <div class="grid md:grid-cols-12 gap-6">
-        
-        <div class="md:col-span-5 bg-gray-50 p-4 rounded-lg border flex flex-col justify-between">
-            <div>
-                <h4 class="font-bold text-sm text-gray-700 mb-3 uppercase">Molecule Dataset Library</h4>
-                
-                <div class="input-group mb-4">
-                    <label>Select Active Molecule to Render:</label>
-                    <select id="moleculeSelect" onchange="switchMolecule()" class="w-full p-2 border rounded-md text-sm bg-white font-semibold text-blue-900 focus:ring-2 focus:ring-blue-500">
-                        <option value="c1ccc(cc1)N(c2ccccc2)c3ccc(cc3)C=C(C#N)C(=O)O">Dye-1 (Ref: TPA-Cyanoacrylic)</option>
-                        <option value="c1ccc(N(c2ccccc2)c3ccc(s3)C=C(C#N)C(=O)O)cc1">Dye-2 (TPA-Thiophene-Acceptor)</option>
-                        <option value="c1ccc2c(c1)N(c3ccccc3)c4ccccc4S2">Dye-3 (Phenothiazine Core)</option>
-                    </select>
+            <div class="grid md:grid-cols-12 gap-6">
+                <div class="md:col-span-5 bg-gray-50 p-4 rounded-lg border flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-700 mb-3 uppercase border-b pb-1">Molecule Dataset Library</h4>
+                        
+                        <div class="input-group mb-4">
+                            <label>Select Molecule to Render:</label>
+                            <select id="moleculeSelect" onchange="switchMolecule()" class="w-full p-2 border rounded-md text-sm bg-white font-semibold text-blue-900 focus:ring-2 focus:ring-blue-500">
+                                <option value="c1ccc(cc1)N(c2ccccc2)c3ccc(cc3)C=C(C#N)C(=O)O">Dye-1 (Ref: TPA-Cyanoacrylic)</option>
+                                <option value="c1ccc(N(c2ccccc2)c3ccc(s3)C=C(C#N)C(=O)O)cc1">Dye-2 (TPA-Thiophene-Acceptor)</option>
+                                <option value="c1ccc2c(c1)N(c3ccccc3)c4ccccc4S2">Dye-3 (Phenothiazine Core)</option>
+                            </select>
+                        </div>
+
+                        <div class="border-t pt-3 space-y-2">
+                            <span class="text-xs font-bold text-gray-600 block">Add New Molecule to Collection (SMILES):</span>
+                            <input type="text" id="newMolName" placeholder="Molecule Name (e.g. Dye-4)" class="w-full p-2 border rounded text-xs bg-white">
+                            <input type="text" id="newMolSmiles" placeholder="SMILES String (e.g. c1ccccc1)" class="w-full p-2 border rounded text-xs bg-white">
+                            <button onclick="addNewMolecule()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-3 rounded text-xs transition">+ Add to Selection List</button>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-3 mt-4">
+                        <label class="text-xs font-bold text-gray-600 block mb-1">Or Load Custom 3D Structure (.XYZ File):</label>
+                        <input type="file" id="xyzFileInput" accept=".xyz" multiple onchange="loadXYZFiles(event)" class="w-full text-xs p-1 bg-white border rounded">
+                        <span class="text-[10px] text-gray-500 block mt-1">*Tip: You can select multiple .xyz files at once!</span>
+                    </div>
                 </div>
 
-                <div class="border-t pt-3 space-y-2">
-                    <span class="text-xs font-bold text-gray-600 block">Add New Molecule to Collection:</span>
-                    <input type="text" id="newMolName" placeholder="Molecule Name (e.g. Dye-4)" class="w-full p-2 border rounded text-xs bg-white">
-                    <input type="text" id="newMolSmiles" placeholder="SMILES String" class="w-full p-2 border rounded text-xs bg-white">
-                    <button onclick="addNewMolecule()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-3 rounded text-xs transition">+ Add to Dataset</button>
+                <div class="md:col-span-7 border rounded-lg p-4 bg-white flex flex-col items-center justify-center">
+                    <div class="w-full flex justify-between items-center mb-2 border-b pb-2">
+                        <span id="activeMolTitle" class="font-bold text-sm text-blue-900">Active View: 2D Structure</span>
+                    </div>
+
+                    <div class="w-full flex items-center justify-center min-h-[280px] relative overflow-hidden bg-slate-50 border rounded">
+                        <canvas id="smilesCanvas" class="max-w-full max-h-[270px]"></canvas>
+                        <div id="mol3dViewer" class="w-full h-[280px] hidden relative"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Rendered dynamically via SmilesDrawer (2D) & 3Dmol.js (3D engine).</p>
                 </div>
             </div>
+        </section>
 
-            <div class="border-t pt-3 mt-4">
-                <label class="text-xs font-bold text-gray-600 block mb-1">Or Load Custom 3D (.XYZ) Structure:</label>
-                <input type="file" id="xyzFileInput" accept=".xyz" onchange="loadXYZFile(event)" class="w-full text-xs p-1 bg-white border rounded">
-            </div>
-        </div>
-
-        <div class="md:col-span-7 border rounded-lg p-4 bg-white flex flex-col items-center justify-center">
-            <div class="w-full flex justify-between items-center mb-2 border-b pb-2">
-                <span id="activeMolTitle" class="font-bold text-sm text-blue-900">Active View: 2D Structure</span>
-                <div class="flex gap-2 text-xs">
-                    <button onclick="toggleViewMode('2d')" class="px-2 py-1 bg-blue-100 text-blue-800 rounded font-semibold">2D Mode</button>
-                    <button onclick="toggleViewMode('3d')" class="px-2 py-1 bg-gray-100 text-gray-700 rounded font-semibold">3D Mode</button>
-                </div>
-            </div>
-
-            <div class="w-full flex items-center justify-center min-h-[280px] relative overflow-hidden bg-slate-50 border rounded">
-                <canvas id="smilesCanvas" class="max-w-full max-h-[270px]"></canvas>
-                <div id="mol3dViewer" class="w-full h-[280px] hidden relative"></div>
-            </div>
-            <p class="text-xs text-gray-500 mt-2">Rendered using SmilesDrawer (2D) & 3Dmol.js (3D engine).</p>
-        </div>
-
-    </div>
-</section>
-
-        <!-- 4. GOVERNING MATHEMATICAL & COMPUTATIONAL EQUATIONS -->
         <section id="equations" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">4</span> Theoretical & Photovoltaic Governing Equations
             </h3>
 
             <div class="grid md:grid-cols-2 gap-6 text-sm">
-                <!-- Reactivity Equations -->
                 <div class="bg-gray-50 p-4 rounded-lg border space-y-3">
                     <h4 class="font-bold text-blue-900 border-b pb-1">Quantum Chemical Descriptors (Koopmans' Theorem)</h4>
                     <p>$$\text{Energy Gap: } E_{gap} = E_{LUMO} - E_{HOMO}$$</p>
@@ -199,26 +181,22 @@
                     <p>$$\text{Electrophilicity Index: } \omega = \frac{\chi^2}{2\eta}$$</p>
                 </div>
 
-                <!-- Photovoltaic Metrics Equations -->
                 <div class="bg-gray-50 p-4 rounded-lg border space-y-3">
                     <h4 class="font-bold text-blue-900 border-b pb-1">Optical & Photovoltaic Parameters</h4>
                     <p>$$\text{Light Harvesting Efficiency: } LHE = 1 - 10^{-f}$$</p>
                     <p class="text-xs text-gray-500">where $f$ is the oscillator strength from TD-DFT calculation.</p>
                     <p>$$\text{Open-Circuit Voltage: } V_{oc} = \frac{E_{LUMO} - E_{CB}(\text{TiO}_2)}{e} - \Delta V_{shift}$$</p>
                     <p>$$\text{Power Conversion Efficiency: } PCE = \frac{J_{sc} \times V_{oc} \times FF}{P_{in}} \times 100\%$$</p>
-                    <p class="text-xs text-gray-500">where $P_{in} = 100\text{ mW/cm}^2$ under standard AM1.5G solar illumination.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 5. INTERACTIVE RESULTS: MO DIAGRAM & REACTIVITY -->
         <section id="mo-analysis" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Molecular Orbitals & Reactivity Generator
             </h3>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Input Data -->
                 <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                     <h4 class="font-bold text-sm text-gray-700 mb-3">Energy Levels Input (eV)</h4>
                     <div class="input-group">
@@ -233,7 +211,6 @@
 
                     <hr class="my-4">
 
-                    <!-- Iso-surface Image Upload -->
                     <h4 class="font-bold text-sm text-gray-700 mb-2">Upload Iso-surface Plots</h4>
                     <div class="input-group">
                         <label>HOMO Surface Image</label>
@@ -245,7 +222,6 @@
                     </div>
                 </div>
 
-                <!-- Interactive MO Energy Diagram -->
                 <div class="flex flex-col items-center justify-center border rounded-lg p-2 bg-white">
                     <div id="moChart" class="w-full h-64"></div>
                     <div class="grid grid-cols-2 gap-2 w-full mt-2">
@@ -253,57 +229,36 @@
                             <span class="text-xs font-bold text-gray-500">HOMO Surface</span>
                             <div class="h-28 border border-dashed rounded flex items-center justify-center overflow-hidden mt-1 bg-gray-50">
                                 <img id="homoImg" class="max-h-full object-contain hidden">
-                                <span id="homoPlaceholder" class="text-xs text-gray-400">No Image Uploaded</span>
+                                <span id="homoPlaceholder" class="text-xs text-gray-400">No Image</span>
                             </div>
                         </div>
                         <div class="text-center">
                             <span class="text-xs font-bold text-gray-500">LUMO Surface</span>
                             <div class="h-28 border border-dashed rounded flex items-center justify-center overflow-hidden mt-1 bg-gray-50">
                                 <img id="lumoImg" class="max-h-full object-contain hidden">
-                                <span id="lumoPlaceholder" class="text-xs text-gray-400">No Image Uploaded</span>
+                                <span id="lumoPlaceholder" class="text-xs text-gray-400">No Image</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Reactivity Results -->
                 <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-sm space-y-2">
                     <h4 class="font-bold text-sm text-gray-700 mb-3">Calculated Global Descriptors</h4>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Band Gap ($E_{gap}$):</span>
-                        <span id="gapRes" class="font-bold text-blue-600">-</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Ionization Potential ($IP$):</span>
-                        <span id="ipRes" class="font-bold">-</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Electron Affinity ($EA$):</span>
-                        <span id="eaRes" class="font-bold">-</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Electronegativity ($\chi$):</span>
-                        <span id="chiRes" class="font-bold">-</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Chemical Hardness ($\eta$):</span>
-                        <span id="etaRes" class="font-bold">-</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-1">
-                        <span class="text-gray-600">Electrophilicity Index ($\omega$):</span>
-                        <span id="omegaRes" class="font-bold">-</span>
-                    </div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Band Gap ($E_{gap}$):</span><span id="gapRes" class="font-bold text-blue-600">-</span></div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Ionization Potential ($IP$):</span><span id="ipRes" class="font-bold">-</span></div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Electron Affinity ($EA$):</span><span id="eaRes" class="font-bold">-</span></div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Electronegativity ($\chi$):</span><span id="chiRes" class="font-bold">-</span></div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Chemical Hardness ($\eta$):</span><span id="etaRes" class="font-bold">-</span></div>
+                    <div class="flex justify-between border-b pb-1"><span class="text-gray-600">Electrophilicity Index ($\omega$):</span><span id="omegaRes" class="font-bold">-</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. TD-DFT ABSORPTION SPECTRA & LHE -->
         <section id="spectra" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">6</span> UV-Vis Spectrum & Light Harvesting Efficiency (LHE)
             </h3>
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Input TDDFT -->
                 <div class="bg-gray-50 p-4 rounded-lg border">
                     <h4 class="font-bold text-sm text-gray-700 mb-3">Input TD-DFT Excitation</h4>
                     <div class="input-group">
@@ -322,21 +277,18 @@
                         <p id="lheResult" class="text-xl font-extrabold text-blue-900">0.944</p>
                     </div>
                 </div>
-                <!-- Interactive Chart Spectrum -->
                 <div class="md:col-span-2 border rounded-lg p-2 bg-white">
                     <div id="spectraChart" class="w-full h-72"></div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. PV PERFORMANCE & EXPERIMENTAL COMPARISON -->
         <section id="pv-performance" class="card">
             <h3 class="text-xl font-bold text-gray-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">7</span> Photovoltaic Performance (J-V Curve) & Experimental Validation
             </h3>
 
             <div class="grid md:grid-cols-3 gap-6 mb-6">
-                <!-- Input PV Parameters -->
                 <div class="bg-gray-50 p-4 rounded-lg border">
                     <h4 class="font-bold text-sm text-gray-700 mb-3">Predicted PV Parameters</h4>
                     <div class="input-group">
@@ -360,14 +312,12 @@
                     </div>
                 </div>
 
-                <!-- J-V Curve Chart -->
                 <div class="md:col-span-2 border rounded-lg p-2 bg-white">
                     <div id="jvChart" class="w-full h-80"></div>
                 </div>
             </div>
 
-            <!-- Experimental Data Comparison Table (Editable) -->
-            <h4 class="font-bold text-base text-gray-800 mb-3">Validation: Computational Predictions vs Experimental Benchmarks (Editable)</h4>
+            <h4 class="font-bold text-base text-gray-800 mb-3">Validation: Computational Predictions vs Experimental Benchmarks</h4>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left border">
                     <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
@@ -402,7 +352,6 @@
             </div>
         </section>
 
-        <!-- 8. CONCLUSION & REFERENCES -->
         <section id="conclusion" class="card bg-blue-900 text-white">
             <h3 class="text-xl font-bold border-b border-blue-700 pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-white text-blue-900 text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">8</span> Conclusions & References
@@ -428,62 +377,123 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="text-center py-6 text-xs text-gray-500 border-t bg-white">
         © 2026 hdini.com | Quantum Computational Chemistry Dashboard
     </footer>
 
-    <!-- JavaScript Logic -->
     <script>
-        // Render 2D SMILES on load and input change
-        function renderSmiles() {
+        // Storage for 3D XYZ contents
+        let xyzStorage = {};
+
+        // 1. Switch Active Molecule from Dropdown Select
+        function switchMolecule() {
+            const select = document.getElementById('moleculeSelect');
+            const val = select.value;
+            const name = select.options[select.selectedIndex].text;
+            
+            document.getElementById('activeMolTitle').innerText = 'Active View: ' + name;
+
+            // Check if selected item is a loaded 3D XYZ file or a 2D SMILES
+            if (xyzStorage[val]) {
+                render3DModel(xyzStorage[val]);
+            } else {
+                renderSmilesString(val);
+            }
+        }
+
+        // 2. Render 2D SMILES Structure
+        function renderSmilesString(smiles) {
             document.getElementById('smilesCanvas').classList.remove('hidden');
             document.getElementById('mol3dViewer').classList.add('hidden');
-            
-            const smiles = document.getElementById('smilesInput').value;
-            const canvas = document.getElementById('smilesCanvas');
-            const drawer = new SmilesDrawer.Drawer({ width: 350, height: 240, bondThickness: 1.5 });
+
+            const drawer = new SmilesDrawer.Drawer({ width: 420, height: 260, bondThickness: 1.5 });
             SmilesDrawer.parse(smiles, function(tree) {
                 drawer.draw(tree, 'smilesCanvas', 'light', false);
             }, function(err) {
-                console.error(err);
+                console.error("SMILES Error:", err);
             });
         }
 
-        // Render 3D XYZ file
-        function loadXYZFile(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+        // 3. Render 3D XYZ Model
+        function render3DModel(xyzData) {
+            document.getElementById('smilesCanvas').classList.add('hidden');
+            const container = document.getElementById('mol3dViewer');
+            container.classList.remove('hidden');
+            container.innerHTML = '';
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('smilesCanvas').classList.add('hidden');
-                const container = document.getElementById('mol3dViewer');
-                container.classList.remove('hidden');
-                container.innerHTML = '';
-
-                const viewer = $3Dmol.createViewer(container, { backgroundColor: 'white' });
-                viewer.addModel(e.target.result, 'xyz');
-                viewer.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
-                viewer.zoomTo();
-                viewer.render();
-            };
-            reader.readAsText(file);
+            const viewer = $3Dmol.createViewer(container, { backgroundColor: 'white' });
+            viewer.addModel(xyzData, 'xyz');
+            viewer.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
+            viewer.zoomTo();
+            viewer.render();
         }
 
-        // 1. MO Diagram & Reactivity Calculation
+        // 4. Dynamically Add New Molecule via SMILES
+        function addNewMolecule() {
+            const nameInput = document.getElementById('newMolName');
+            const smilesInput = document.getElementById('newMolSmiles');
+            
+            if(!nameInput.value || !smilesInput.value) {
+                alert("Mohon isi Nama Molekul dan String SMILES terlebih dahulu.");
+                return;
+            }
+
+            const select = document.getElementById('moleculeSelect');
+            const newOption = document.createElement('option');
+            newOption.value = smilesInput.value;
+            newOption.text = nameInput.value;
+            
+            select.add(newOption);
+            select.value = smilesInput.value; // Switch active to newly added item
+            
+            switchMolecule();
+
+            nameInput.value = '';
+            smilesInput.value = '';
+        }
+
+        // 5. Upload & Handle Multiple .XYZ Files
+        function loadXYZFiles(event) {
+            const files = event.target.files;
+            if (!files.length) return;
+
+            const select = document.getElementById('moleculeSelect');
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const fileKey = 'xyz_' + file.name;
+                    xyzStorage[fileKey] = e.target.result; // Store 3D data
+
+                    // Add to dropdown if not present
+                    let exists = false;
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === fileKey) exists = true;
+                    }
+
+                    if (!exists) {
+                        const newOption = document.createElement('option');
+                        newOption.value = fileKey;
+                        newOption.text = '3D: ' + file.name;
+                        select.add(newOption);
+                    }
+
+                    select.value = fileKey;
+                    switchMolecule();
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        // --- Other Dashboard Calculations ---
         function updateMOData() {
             const homo = parseFloat(document.getElementById('homoVal').value);
             const lumo = parseFloat(document.getElementById('lumoVal').value);
             const gap = lumo - homo;
-            
-            const ip = -homo;
-            const ea = -lumo;
-            const chi = (ip + ea) / 2;
-            const eta = (ip - ea) / 2;
+            const ip = -homo, ea = -lumo;
+            const chi = (ip + ea) / 2, eta = (ip - ea) / 2;
             const omega = (chi * chi) / (2 * eta);
 
-            // Text Output Update
             document.getElementById('gapRes').innerText = gap.toFixed(2) + ' eV';
             document.getElementById('ipRes').innerText = ip.toFixed(2) + ' eV';
             document.getElementById('eaRes').innerText = ea.toFixed(2) + ' eV';
@@ -491,25 +501,15 @@
             document.getElementById('etaRes').innerText = eta.toFixed(2) + ' eV';
             document.getElementById('omegaRes').innerText = omega.toFixed(2) + ' eV';
 
-            // Plotly MO Level Plot
             const trace = {
-                x: ['HOMO', 'LUMO'],
-                y: [homo, lumo],
-                type: 'scatter',
-                mode: 'markers+text',
+                x: ['HOMO', 'LUMO'], y: [homo, lumo],
+                type: 'scatter', mode: 'markers+text',
                 marker: { size: 40, color: ['#1e40af', '#dc2626'], symbol: 'line-ew', linewidth: 4 },
-                text: [homo.toFixed(2) + ' eV', lumo.toFixed(2) + ' eV'],
-                textposition: 'top center'
+                text: [homo.toFixed(2) + ' eV', lumo.toFixed(2) + ' eV'], textposition: 'top center'
             };
-            const layout = {
-                title: 'Frontier MO Energy Levels (eV)',
-                yaxis: { title: 'Energy Level (eV)' },
-                margin: { t: 40, b: 40, l: 40, r: 40 }
-            };
-            Plotly.newPlot('moChart', [trace], layout, {responsive: true});
+            Plotly.newPlot('moChart', [trace], { title: 'Frontier MO Energy Levels (eV)', yaxis: { title: 'Energy Level (eV)' }, margin: { t: 40, b: 40, l: 40, r: 40 } }, {responsive: true});
         }
 
-        // Iso-surface Preview
         function previewImage(event, imgId) {
             const reader = new FileReader();
             reader.onload = function() {
@@ -521,53 +521,34 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        // 2. TD-DFT UV-Vis Spectrum & LHE Generator
         function generateSpectrum() {
             const lMax = parseFloat(document.getElementById('lambdaMax').value);
             const f = parseFloat(document.getElementById('oscStrength').value);
-
-            // Calculate LHE
             const lhe = 1 - Math.pow(10, -f);
+
             document.getElementById('lheResult').innerText = lhe.toFixed(3);
             document.getElementById('expLambdaCalc').innerText = lMax;
 
-            // Gaussian Broadening Spectrum Simulation
             let x = [], y = [];
             for (let w = 300; w <= 800; w += 2) {
                 x.push(w);
-                let intensity = f * Math.exp(-Math.pow((w - lMax) / 40, 2));
-                y.push(intensity);
+                y.push(f * Math.exp(-Math.pow((w - lMax) / 40, 2)));
             }
 
-            const trace = {
-                x: x, y: y,
-                type: 'scatter', mode: 'lines',
-                fill: 'tozeroy',
-                line: { color: '#2563eb', width: 2 }
-            };
-            const layout = {
-                title: 'Simulated Optical Absorption Spectrum',
-                xaxis: { title: 'Wavelength λ (nm)' },
-                yaxis: { title: 'Absorbance (a.u.)' },
-                margin: { t: 40, b: 40, l: 40, r: 40 }
-            };
-            Plotly.newPlot('spectraChart', [trace], layout, {responsive: true});
+            Plotly.newPlot('spectraChart', [{ x: x, y: y, type: 'scatter', mode: 'lines', fill: 'tozeroy', line: { color: '#2563eb', width: 2 } }], { title: 'Simulated Absorption Spectrum', xaxis: { title: 'Wavelength λ (nm)' }, yaxis: { title: 'Absorbance (a.u.)' }, margin: { t: 40, b: 40, l: 40, r: 40 } }, {responsive: true});
             calcDiff();
         }
 
-        // 3. J-V Curve & PCE Calculation
         function generateJV() {
             const voc = parseFloat(document.getElementById('vocVal').value);
             const jsc = parseFloat(document.getElementById('jscVal').value);
             const ff = parseFloat(document.getElementById('ffVal').value);
-            const pin = 100; // mW/cm^2
+            const pce = (jsc * voc * ff / 100) * 100;
 
-            const pce = (jsc * voc * ff / pin) * 100;
             document.getElementById('pceResult').innerText = pce.toFixed(2) + ' %';
             document.getElementById('expVocCalc').innerText = voc;
             document.getElementById('expPceCalc').innerText = pce.toFixed(2);
 
-            // Diode Curve Generator
             let v = [], j = [];
             for (let val = 0; val <= voc; val += 0.02) {
                 v.push(val);
@@ -575,22 +556,10 @@
                 j.push(current < 0 ? 0 : current);
             }
 
-            const trace = {
-                x: v, y: j,
-                type: 'scatter', mode: 'lines',
-                line: { color: '#059669', width: 3 }
-            };
-            const layout = {
-                title: 'Simulated Photovoltaic J-V Characteristics',
-                xaxis: { title: 'Voltage V (Volts)' },
-                yaxis: { title: 'Current Density J (mA/cm²)' },
-                margin: { t: 40, b: 40, l: 40, r: 40 }
-            };
-            Plotly.newPlot('jvChart', [trace], layout, {responsive: true});
+            Plotly.newPlot('jvChart', [{ x: v, y: j, type: 'scatter', mode: 'lines', line: { color: '#059669', width: 3 } }], { title: 'Simulated Photovoltaic J-V Characteristics', xaxis: { title: 'Voltage V (Volts)' }, yaxis: { title: 'Current Density J (mA/cm²)' }, margin: { t: 40, b: 40, l: 40, r: 40 } }, {responsive: true});
             calcDiff();
         }
 
-        // 4. Calculate Difference Error %
         function calcDiff() {
             const calcL = parseFloat(document.getElementById('expLambdaCalc').innerText);
             const expL = parseFloat(document.getElementById('expLambda').value);
@@ -605,9 +574,8 @@
             if (expP) document.getElementById('diffPce').innerText = Math.abs((calcP - expP) / expP * 100).toFixed(2) + '%';
         }
 
-        // Initial Load
         function initDashboard() {
-            renderSmiles();
+            switchMolecule();
             updateMOData();
             generateSpectrum();
             generateJV();
