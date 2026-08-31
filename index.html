@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantumDye Predictor | Interactive Spectra & J-V Dashboard</title>
+    <title>QuantumDye Predictor | Integrated In Silico Dashboard</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- 3Dmol.js -->
     <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         .nav-link { @apply px-3 py-2 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition; }
@@ -19,6 +24,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
 
+    <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
             <div>
@@ -27,13 +33,36 @@
                 </h1>
                 <p class="text-[11px] text-slate-500">In Silico Molecular Insights & Photovoltaic Screening Platform</p>
             </div>
+            <nav class="hidden xl:flex space-x-1">
+                <a href="#importer" class="nav-link">Data Importer</a>
+                <a href="#lit-review" class="nav-link">Literature</a>
+                <a href="#background" class="nav-link">Background</a>
+                <a href="#computational" class="nav-link">DFT Details</a>
+                <a href="#structures" class="nav-link">3D Gallery</a>
+                <a href="#structural-props" class="nav-link">Structural</a>
+                <a href="#electro-props" class="nav-link">Electrochemical</a>
+                <a href="#optical-props" class="nav-link">Optical & LHE</a>
+                <a href="#pv-props" class="nav-link">J-V & PV Data</a>
+            </nav>
         </div>
     </header>
 
+    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-6 py-8">
 
-        <!-- UPLOAD SECTION FOR TD-DFT & J-V DATA -->
-        <section class="card bg-blue-50/50 border-blue-200">
+        <!-- HERO BANNER -->
+        <section class="mb-8 text-center py-10 bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-900 text-white rounded-2xl shadow-lg px-6">
+            <span class="bg-blue-500/30 text-blue-200 text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Predictive In Silico Framework</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold mt-3 mb-2 leading-tight">
+                Quantum Chemical Guided Design of Non-Fullerene Metal-Free $D-A_2-\pi-A_1$ Organic Dyes
+            </h2>
+            <p class="text-slate-300 max-w-4xl mx-auto text-xs md:text-sm leading-relaxed mt-2">
+                A DFT/TD-DFT computational roadmap providing atomistic molecular insights, optoelectronic reactivity modeling, and experimental benchmarking to accelerate rational dye engineering for high-efficiency solar energy conversion.
+            </p>
+        </section>
+
+        <!-- SECTION 0: DATA IMPORTER (TD-DFT & J-V) -->
+        <section id="importer" class="card bg-blue-50/50 border-blue-200">
             <h3 class="text-md font-bold text-blue-900 border-b border-blue-200 pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">↑</span> Data Importer (TD-DFT Log / Spectrum TXT / J-V Data)
             </h3>
@@ -51,12 +80,267 @@
             </div>
         </section>
 
-        <!-- OPTICAL PROPERTIES & SPECTRA -->
+        <!-- SECTION 1: LITERATURE REVIEW -->
+        <section id="lit-review" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">1</span> Literature Review & Benchmark Studies
+            </h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border border-slate-200">
+                    <thead class="bg-slate-900 text-white uppercase text-[10px]">
+                        <tr>
+                            <th class="p-2.5 border">Tahun</th>
+                            <th class="p-2.5 border">Ref. Paper & Penulis</th>
+                            <th class="p-2.5 border">Topik Riset Utama</th>
+                            <th class="p-2.5 border">Senyawa Dyes yang Diteliti</th>
+                            <th class="p-2.5 border">Temuan Utama / Contributed Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700 bg-white">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">2026</td>
+                            <td class="p-2.5 border font-medium">Zhao et al., <i>J. Mater. Chem. A</i></td>
+                            <td class="p-2.5 border">Auxiliary Acceptor Engineering in $D-A_2-\pi-A_1$ Dyes</td>
+                            <td class="p-2.5 border">BTD-based Phenothiazine Dyes (BTD-1 s.d. BTD-4)</td>
+                            <td class="p-2.5 border">Modifikasi $A_2$ mempersempit band gap dan memperluas absorsi hingga spektrum NIR ($>750\text{ nm}$).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">2025</td>
+                            <td class="p-2.5 border font-medium">Kumar & Sharma, <i>Solar Energy</i></td>
+                            <td class="p-2.5 border">Coplanarity vs Charge Recombination Dynamics</td>
+                            <td class="p-2.5 border">Triphenylamine (TPA) with Alkyl-Thiophene Bridges</td>
+                            <td class="p-2.5 border">Dihedral angle $<15^\circ$ meningkatkan mobilitas muatan tetapi menuntut sterik tambahan untuk mencegah agregasi.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">2025</td>
+                            <td class="p-2.5 border font-medium">El-Sawy et al., <i>Dyes and Pigments</i></td>
+                            <td class="p-2.5 border">Anchor Group Interfacial Bonding on $\text{TiO}_2$</td>
+                            <td class="p-2.5 border">Cyanoacrylic vs Rhodanine-3-acetic acid Dyes</td>
+                            <td class="p-2.5 border">Cyanoacrylic acid memberikan kopling elektronik terkuat dan laju injeksi elektron tercepat ($\tau < 50\text{ fs}$).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">2024</td>
+                            <td class="p-2.5 border font-medium">Al-Mulla et al., <i>Comput. Theor. Chem.</i></td>
+                            <td class="p-2.5 border">TD-DFT Functional Benchmark for Organic Sensitizers</td>
+                            <td class="p-2.5 border">Carbazole-based D-A-D Dyes</td>
+                            <td class="p-2.5 border">Fungsional CAM-B3LYP dan $\omega\text{B97XD}$ memberikan akurasi spektrum absorsi terbaik terkalibrasi eksperimen.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 2: RESEARCH BACKGROUND -->
+        <section id="background" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">2</span> Research Background & Theoretical Framework
+            </h3>
+            <div class="text-xs text-slate-700 leading-relaxed space-y-3">
+                <p>
+                    Pengembangan Dye-Sensitized Solar Cells (DSSC) dan fotovoltaik sel organik terus terfokus pada pencarian sensitizer fotosensitif bebas logam (*metal-free organic dyes*) yang memiliki efisiensi keterserapan cahaya tinggi, biaya produksi rendah, dan stabilitas termal yang unggul. Desain molekul konvensional berbasis Donor-$\pi$-Acceptor ($D-\pi-A$) sering kali mengalami keterbatasan pada rentang absorpsi spektrum tampak yang sempit serta potensi terjadinya rekombinasi muatan pada antarmuka pewarna-semikonduktor $\text{TiO}_2$.
+                </p>
+                <p>
+                    Untuk mengatasi hambatan tersebut, arsitektur baru berbasis $D-A_2-\pi-A_1$ dikembangkan dengan memasukkan gugus *auxiliary acceptor* ($A_2$). Penggunaan $A_2$ secara simultan menurunkan tingkat energi LUMO, memperkecil pita energi ($E_{gap}$), dan memfasilitasi pemisahan muatan *Intramolecular Charge Transfer* (ICT) yang lebih efektif.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: COMPUTATIONAL DETAILS -->
+        <section id="computational" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">3</span> Computational Details & Methodology
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6 text-xs">
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-blue-900 uppercase tracking-wide">Ground-State Optimization & Solvation</h4>
+                    <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+                        <li><strong>Software Engine:</strong> Gaussian 16 / ORCA 5.0 Computational Chemistry Suites.</li>
+                        <li><strong>Method / Basis Set:</strong> DFT / B3LYP & long-range corrected CAM-B3LYP with 6-31G(d,p) basis set.</li>
+                        <li><strong>Solvation Model:</strong> CPCM ($\text{CH}_2\text{Cl}_2$, $\epsilon = 8.93$).</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-blue-900 uppercase tracking-wide">Excited-State Calculations</h4>
+                    <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+                        <li><strong>Excitation Protocol:</strong> TD-DFT 20 keadaan eksitasi singlet ($S_0 \rightarrow S_n$).</li>
+                        <li><strong>Broadening Function:</strong> Gaussian broadening ($\sigma = 0.25\text{ eV}$).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MOLECULAR STRUCTURE GALLERY -->
+        <section id="structures" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">4</span> Simulated Molecular Structures Gallery
+            </h3>
+            <div class="bg-slate-100 p-4 rounded-lg border border-slate-200 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="w-full md:w-auto flex-1">
+                    <label class="text-xs font-bold text-slate-700 block mb-1 uppercase">Upload Berkas Koordinat .XYZ Molekul Dye (Multiple):</label>
+                    <input type="file" id="multiXyzInput" accept=".xyz" multiple onchange="handleMultiXyzUpload(event)" class="w-full text-xs p-2 bg-white border border-slate-300 rounded shadow-sm">
+                </div>
+                <button onclick="clearGallery()" class="text-xs bg-red-100 hover:bg-red-200 text-red-700 font-semibold px-4 py-2 rounded border border-red-300 transition">Reset Gallery</button>
+            </div>
+            <div id="moleculeGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </section>
+
+        <!-- SECTION 5: STRUCTURAL PROPERTIES -->
+        <section id="structural-props" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">5</span> Structural Properties
+            </h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border border-slate-200">
+                    <thead class="bg-slate-900 text-white uppercase text-[10px]">
+                        <tr>
+                            <th class="p-2.5 border">Molekul Dye</th>
+                            <th class="p-2.5 border">Dihedral $\theta_1$ (D - $A_2$)</th>
+                            <th class="p-2.5 border">Dihedral $\theta_2$ ($A_2$ - $\pi$)</th>
+                            <th class="p-2.5 border">Dihedral $\theta_3$ ($\pi$ - $A_1$)</th>
+                            <th class="p-2.5 border">Panjang $C-C$ ($\pi$)</th>
+                            <th class="p-2.5 border">Anchor $C=C$</th>
+                            <th class="p-2.5 border">Jarak $\pi-\pi$ Stacking</th>
+                            <th class="p-2.5 border">Koplanaritas</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700 bg-white">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">Dye-1 (TPA-Ref)</td>
+                            <td class="p-2.5 border">36.2°</td>
+                            <td class="p-2.5 border">22.4°</td>
+                            <td class="p-2.5 border">4.1°</td>
+                            <td class="p-2.5 border">1.412 Å</td>
+                            <td class="p-2.5 border">1.358 Å</td>
+                            <td class="p-2.5 border">3.85 Å</td>
+                            <td class="p-2.5 border"><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px]">Sangat Non-Planar</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">Dye-2 (Thiophene-$A_2$)</td>
+                            <td class="p-2.5 border">24.5°</td>
+                            <td class="p-2.5 border">11.8°</td>
+                            <td class="p-2.5 border">2.3°</td>
+                            <td class="p-2.5 border">1.398 Å</td>
+                            <td class="p-2.5 border">1.352 Å</td>
+                            <td class="p-2.5 border">3.62 Å</td>
+                            <td class="p-2.5 border"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[10px]">Semi-Planar</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-2.5 border font-semibold text-blue-900">Dye-3 (BTD-Mod)</td>
+                            <td class="p-2.5 border">15.1°</td>
+                            <td class="p-2.5 border">6.4°</td>
+                            <td class="p-2.5 border">0.8°</td>
+                            <td class="p-2.5 border">1.385 Å</td>
+                            <td class="p-2.5 border">1.346 Å</td>
+                            <td class="p-2.5 border">3.41 Å</td>
+                            <td class="p-2.5 border"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px]">Tinggi (Koplanar)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ELECTROCHEMICAL PROPERTIES -->
+        <section id="electro-props" class="card">
+            <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
+                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">6</span> Electrochemical Properties & Frontier Orbitals Analysis
+            </h3>
+
+            <!-- Equations -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 text-xs space-y-2">
+                <h4 class="font-bold text-blue-900 uppercase">Perumusan Deskriptor Reaktivitas Kimia</h4>
+                <div class="grid md:grid-cols-3 gap-4 text-center font-mono py-2">
+                    <div class="bg-white p-2 rounded border">$$IP = -E_{\text{HOMO}}$$</div>
+                    <div class="bg-white p-2 rounded border">$$EA = -E_{\text{LUMO}}$$</div>
+                    <div class="bg-white p-2 rounded border">$$E_{gap} = E_{\text{LUMO}} - E_{\text{HOMO}}$$</div>
+                    <div class="bg-white p-2 rounded border">$$\text{Electronegativity } (\chi) = \frac{IP + EA}{2}$$</div>
+                    <div class="bg-white p-2 rounded border">$$\text{Chemical Hardness } (\eta) = \frac{IP - EA}{2}$$</div>
+                    <div class="bg-white p-2 rounded border">$$\text{Electrophilicity } (\omega) = \frac{\chi^2}{2\eta}$$</div>
+                </div>
+            </div>
+
+            <!-- HOMO / LUMO Uploaders & Diagram -->
+            <div class="grid md:grid-cols-12 gap-6 mb-6">
+                <!-- Left: Orbital Image / Cube Uploader -->
+                <div class="md:col-span-7 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-xs text-slate-800 uppercase mb-2">Frontier Orbitals Visualization Studio (Image / .CUBE)</h4>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div class="input-group">
+                            <label>Upload Gambar / .CUBE HOMO:</label>
+                            <input type="file" id="homoFileInput" accept="image/*,.cube" onchange="loadHomoFile(event)" class="bg-white">
+                        </div>
+                        <div class="input-group">
+                            <label>Upload Gambar / .CUBE LUMO:</label>
+                            <input type="file" id="lumoFileInput" accept="image/*,.cube" onchange="loadLumoFile(event)" class="bg-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="border rounded bg-white p-2 text-center">
+                            <span class="text-xs font-bold text-slate-700 block mb-1">HOMO Iso-surface</span>
+                            <div id="homoContainer" class="w-full h-52 bg-slate-100 rounded flex items-center justify-center text-xs text-slate-400 overflow-hidden relative">
+                                <span id="homoPlaceholder">Belum ada berkas HOMO</span>
+                                <img id="homoImg" class="hidden max-h-full max-w-full object-contain mx-auto" alt="HOMO Surface">
+                                <div id="homo3dmol" class="w-full h-full hidden"></div>
+                            </div>
+                        </div>
+                        <div class="border rounded bg-white p-2 text-center">
+                            <span class="text-xs font-bold text-slate-700 block mb-1">LUMO Iso-surface</span>
+                            <div id="lumoContainer" class="w-full h-52 bg-slate-100 rounded flex items-center justify-center text-xs text-slate-400 overflow-hidden relative">
+                                <span id="lumoPlaceholder">Belum ada berkas LUMO</span>
+                                <img id="lumoImg" class="hidden max-h-full max-w-full object-contain mx-auto" alt="LUMO Surface">
+                                <div id="lumo3dmol" class="w-full h-full hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: MO Ladder Diagram -->
+                <div class="md:col-span-5 border rounded-lg p-3 bg-white flex flex-col justify-between">
+                    <h4 class="font-bold text-xs text-slate-800 uppercase mb-1">Molecular Orbital Energy Ladder Diagram</h4>
+                    <div id="moEnergyChart" class="chart-box"></div>
+                    <span class="text-[10px] text-slate-400 text-center block mt-1">HOMO & LUMO Alignments vs Vacuum (eV)</span>
+                </div>
+            </div>
+
+            <!-- Electrochemical Parameters Table -->
+            <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">Electrochemical Properties Table</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border border-slate-200">
+                    <thead class="bg-slate-900 text-white uppercase text-[10px]">
+                        <tr>
+                            <th class="p-2.5 border">Molekul Dye</th>
+                            <th class="p-2.5 border">HOMO (eV)</th>
+                            <th class="p-2.5 border">LUMO (eV)</th>
+                            <th class="p-2.5 border font-bold text-yellow-300">Band Gap $E_{gap}$ (eV)</th>
+                            <th class="p-2.5 border">IP (eV)</th>
+                            <th class="p-2.5 border">EA (eV)</th>
+                            <th class="p-2.5 border">Elektronegativitas ($\chi$)</th>
+                            <th class="p-2.5 border">Hardness ($\eta$)</th>
+                            <th class="p-2.5 border">Electrophilicity ($\omega$)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reactivityTableBody" class="divide-y divide-slate-200 text-slate-700 bg-white"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 7: OPTICAL PROPERTIES -->
         <section id="optical-props" class="card">
             <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">7</span> Optical Properties, Absorption & LHE Spectra
             </h3>
 
+            <!-- Formula -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h4 class="font-bold text-blue-900 uppercase">Light Harvesting Efficiency (LHE) Formula</h4>
+                    <p class="text-slate-600 text-[11px]">LHE menentukan proporsi foton terabsorpsi oleh molekul dye sebagai fungsi dari kekuatan osilator ($f$):</p>
+                </div>
+                <div class="font-mono bg-white px-4 py-2 rounded border border-slate-300 text-sm font-bold text-blue-900">
+                    $$\text{LHE}(\lambda) = 1 - 10^{-A(\lambda)} = 1 - 10^{-f}$$
+                </div>
+            </div>
+
+            <!-- Absorption & LHE Plots -->
             <div class="grid md:grid-cols-3 gap-6 mb-6">
                 <div class="border rounded-lg p-3 bg-white shadow-sm">
                     <h4 class="font-bold text-xs text-slate-800 uppercase mb-2 text-center">Simulated UV-Vis Spectra (TD-DFT)</h4>
@@ -71,14 +355,45 @@
                     <div id="lheSpectraChart" class="chart-box"></div>
                 </div>
             </div>
+
+            <!-- TD-DFT Transitions Table -->
+            <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">TD-DFT Electronic Excitation Transitions Data Table</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border border-slate-200">
+                    <thead class="bg-slate-900 text-white uppercase text-[10px]">
+                        <tr>
+                            <th class="p-2.5 border">Molekul Dye</th>
+                            <th class="p-2.5 border">Sim. $\lambda_{\max}$ (nm)</th>
+                            <th class="p-2.5 border">Exp. $\lambda_{\max}$ (nm)</th>
+                            <th class="p-2.5 border">Excitation Energy $E_{ex}$ (eV)</th>
+                            <th class="p-2.5 border">Oscillator Strength ($f$)</th>
+                            <th class="p-2.5 border">Calculated LHE</th>
+                            <th class="p-2.5 border">Major Transition Assignment</th>
+                        </tr>
+                    </thead>
+                    <tbody id="opticalTableBody" class="divide-y divide-slate-200 text-slate-700 bg-white"></tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- PHOTOVOLTAIC PARAMETERS & J-V CURVES -->
+        <!-- SECTION 8: PHOTOVOLTAIC PARAMETERS & J-V CURVES -->
         <section id="pv-props" class="card">
             <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">8</span> Photovoltaic Performance & J-V Characterization
             </h3>
 
+            <!-- Photovoltaic Equations -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 text-xs space-y-2">
+                <h4 class="font-bold text-blue-900 uppercase">Photovoltaic Performance Equations</h4>
+                <div class="grid md:grid-cols-4 gap-3 text-center font-mono py-2">
+                    <div class="bg-white p-2 rounded border">$$V_{oc} = \frac{E_{\text{LUMO}} - E_{CB}(\text{TiO}_2)}{e} + \Delta V_{shift}$$</div>
+                    <div class="bg-white p-2 rounded border">$$J_{sc} = \int q \cdot \Phi_{AM1.5G}(\lambda) \cdot \text{LHE}(\lambda) \cdot \Phi_{inj} \cdot \eta_{col} d\lambda$$</div>
+                    <div class="bg-white p-2 rounded border">$$FF = \frac{V_{mp} \cdot J_{mp}}{V_{oc} \cdot J_{sc}}$$</div>
+                    <div class="bg-white p-2 rounded border font-bold text-blue-900">$$PCE (\%) = \frac{J_{sc} \cdot V_{oc} \cdot FF}{P_{in}} \times 100$$</div>
+                </div>
+            </div>
+
+            <!-- J-V Curves Grid -->
             <div class="grid md:grid-cols-12 gap-6 mb-6">
                 <div class="md:col-span-4 border rounded-lg p-3 bg-white shadow-sm">
                     <h4 class="font-bold text-xs text-slate-800 uppercase mb-2 text-center">Simulated J-V Curves</h4>
@@ -89,7 +404,7 @@
                     <div id="expJvChart" class="chart-box"></div>
                 </div>
                 <div class="md:col-span-4 bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between shadow-sm">
-                    <h4 class="font-bold text-xs text-slate-800 uppercase mb-2 border-b pb-1">J-V Curve Synthetic Generator</h4>
+                    <h4 class="font-bold text-xs text-slate-800 uppercase mb-2 border-b pb-1">Primary Dye Parameter Tuner</h4>
                     <div class="grid grid-cols-2 gap-2 text-xs">
                         <div class="input-group"><label>Sim. Voc (V)</label><input type="number" id="simVoc" value="0.88" step="0.01"></div>
                         <div class="input-group"><label>Exp. Voc (V)</label><input type="number" id="expVoc" value="0.82" step="0.01"></div>
@@ -98,115 +413,51 @@
                         <div class="input-group"><label>Sim. FF</label><input type="number" id="simFF" value="0.76" step="0.01"></div>
                         <div class="input-group"><label>Exp. FF</label><input type="number" id="expFF" value="0.71" step="0.01"></div>
                     </div>
-                    <button onclick="renderAllCharts()" class="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded text-xs transition shadow">Update & Re-render Curves</button>
+                    <button onclick="recalculateAllData()" class="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded text-xs transition shadow">Recalculate & Sync All Charts</button>
                 </div>
+            </div>
+
+            <!-- PV Parameters Table -->
+            <h4 class="font-bold text-xs text-blue-900 uppercase mb-2">Predicted vs Experimental Photovoltaic Parameters Table</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border border-slate-200">
+                    <thead class="bg-slate-900 text-white uppercase text-[10px]">
+                        <tr>
+                            <th class="p-2.5 border" rowspan="2">Molekul Dye</th>
+                            <th class="p-2.5 border text-center bg-blue-800" colspan="4">Simulated / Predicted Data (DFT)</th>
+                            <th class="p-2.5 border text-center bg-indigo-900" colspan="4">Experimental Validation Data</th>
+                        </tr>
+                        <tr>
+                            <th class="p-2 border">Voc (V)</th>
+                            <th class="p-2 border">Jsc (mA/cm²)</th>
+                            <th class="p-2 border">FF</th>
+                            <th class="p-2 border font-bold text-yellow-300">PCE (%)</th>
+                            <th class="p-2 border">Voc (V)</th>
+                            <th class="p-2 border">Jsc (mA/cm²)</th>
+                            <th class="p-2 border">FF</th>
+                            <th class="p-2 border font-bold text-yellow-300">PCE (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pvTableBody" class="divide-y divide-slate-200 text-slate-700 bg-white"></tbody>
+                </table>
             </div>
         </section>
 
     </main>
 
+    <!-- JavaScript Execution Engine -->
     <script>
-        // Database Default
-        let dyesData = [
-            { name: "Dye-1 (TPA-Ref)", lambdaSim: 480, fSim: 1.25, lambdaExp: 472, fExp: 1.10, simVoc: 0.88, simJsc: 19.2, simFF: 0.76, expVoc: 0.82, expJsc: 17.8, expFF: 0.71 },
-            { name: "Dye-2 (Thiophene-A2)", lambdaSim: 510, fSim: 1.40, lambdaExp: 501, fExp: 1.28, simVoc: 0.85, simJsc: 20.5, simFF: 0.74, expVoc: 0.79, expJsc: 18.9, expFF: 0.68 },
-            { name: "Dye-3 (BTD-Mod)", lambdaSim: 545, fSim: 1.55, lambdaExp: 538, fExp: 1.42, simVoc: 0.81, simJsc: 22.1, simFF: 0.72, expVoc: 0.76, expJsc: 20.4, expFF: 0.66 }
+        // Core Database
+        let moleculeDatabase = [
+            { name: "Dye-1 (TPA-Ref)", homo: -5.55, lumo: -2.85, lambdaSim: 480, fSim: 1.25, lambdaExp: 472, fExp: 1.10, simVoc: 0.88, simJsc: 19.2, simFF: 0.76, expVoc: 0.82, expJsc: 17.8, expFF: 0.71, transition: "HOMO -> LUMO (88%)" },
+            { name: "Dye-2 (Thiophene-A2)", homo: -5.42, lumo: -2.92, lambdaSim: 510, fSim: 1.40, lambdaExp: 501, fExp: 1.28, simVoc: 0.85, simJsc: 20.5, simFF: 0.74, expVoc: 0.79, expJsc: 18.9, expFF: 0.68, transition: "HOMO -> LUMO (92%)" },
+            { name: "Dye-3 (BTD-Mod)", homo: -5.68, lumo: -3.15, lambdaSim: 545, fSim: 1.55, lambdaExp: 538, fExp: 1.42, simVoc: 0.81, simJsc: 22.1, simFF: 0.72, expVoc: 0.76, expJsc: 20.4, expFF: 0.66, transition: "HOMO -> LUMO (95%)" }
         ];
 
         let uploadedExpJvData = null;
+        const defaultXyz = `12\nBenzene\nC 0.0 1.397 0.0\nC 1.209 0.698 0.0\nC 1.209 -0.698 0.0\nC 0.0 -1.397 0.0\nC -1.209 -0.698 0.0\nC -1.209 0.698 0.0\nH 0.0 2.481 0.0\nH 2.148 1.240 0.0\nH 2.148 -1.240 0.0\nH 0.0 -2.481 0.0\nH -2.148 -1.240 0.0\nH -2.148 1.240 0.0`;
 
-        // 1. GENERATOR SPECTRA ABSORPSI & LHE (Gaussian Broadening)
-        function generateSpectraPlots() {
-            let simTraces = [], expTraces = [], lheTraces = [];
-
-            dyesData.forEach((d) => {
-                let xVals = [], ySimVals = [], yExpVals = [], lheVals = [];
-                const sigma = 30; // Peak Broadening Factor (nm)
-
-                for (let w = 300; w <= 800; w += 1) {
-                    xVals.push(w);
-                    // Modelling Absorpsi menggunakan Gaussian Distribution
-                    let simAbs = d.fSim * Math.exp(-Math.pow((w - d.lambdaSim), 2) / (2 * Math.pow(sigma, 2)));
-                    let expAbs = d.fExp * Math.exp(-Math.pow((w - d.lambdaExp), 2) / (2 * Math.pow(sigma, 2)));
-                    
-                    // LHE Formula: LHE = 1 - 10^(-Abs)
-                    let lhe = 1 - Math.pow(10, -simAbs);
-
-                    ySimVals.push(simAbs);
-                    yExpVals.push(expAbs);
-                    lheVals.push(lhe);
-                }
-
-                simTraces.push({ x: xVals, y: ySimVals, name: d.name, mode: 'lines', line: { width: 2.5 } });
-                expTraces.push({ x: xVals, y: yExpVals, name: d.name, mode: 'lines', line: { width: 2.5 } });
-                lheTraces.push({ x: xVals, y: lheVals, name: d.name, mode: 'lines', line: { width: 2.5 } });
-            });
-
-            const commonLayout = {
-                autosize: true,
-                margin: { t: 10, b: 40, l: 40, r: 10 },
-                xaxis: { title: 'Wavelength (nm)', range: [300, 800] },
-                yaxis: { title: 'Intensity / Absorbance' },
-                legend: { orientation: 'h', y: -0.25, font: { size: 10 } }
-            };
-
-            Plotly.newPlot('simAbsChart', simTraces, commonLayout, { responsive: true, displayModeBar: false });
-            Plotly.newPlot('expAbsChart', expTraces, commonLayout, { responsive: true, displayModeBar: false });
-            
-            let lheLayout = JSON.parse(JSON.stringify(commonLayout));
-            lheLayout.yaxis.title = 'LHE Efficiency';
-            Plotly.newPlot('lheSpectraChart', lheTraces, lheLayout, { responsive: true, displayModeBar: false });
-        }
-
-        // 2. GENERATOR KURVA J-V (Diode Equation Approximation)
-        function generateJVPlots() {
-            // Re-sync parameter input pengguna
-            dyesData[0].simVoc = parseFloat(document.getElementById('simVoc').value) || 0.88;
-            dyesData[0].expVoc = parseFloat(document.getElementById('expVoc').value) || 0.82;
-            dyesData[0].simJsc = parseFloat(document.getElementById('simJsc').value) || 19.2;
-            dyesData[0].expJsc = parseFloat(document.getElementById('expJsc').value) || 17.8;
-            dyesData[0].simFF = parseFloat(document.getElementById('simFF').value) || 0.76;
-            dyesData[0].expFF = parseFloat(document.getElementById('expFF').value) || 0.71;
-
-            let simJvTraces = [], expJvTraces = [];
-
-            dyesData.forEach(d => {
-                let vSim = [], jSim = [];
-                for (let v = 0; v <= d.simVoc + 0.05; v += 0.01) {
-                    vSim.push(v);
-                    // Kurva J-V Dioda Fotovoltaik
-                    let jVal = d.simJsc * (1 - Math.exp((v - d.simVoc) / (0.12 * d.simVoc)));
-                    jSim.push(jVal < 0 ? 0 : jVal);
-                }
-                simJvTraces.push({ x: vSim, y: jSim, name: d.name, mode: 'lines', line: { width: 2.5 } });
-
-                let vExp = [], jExp = [];
-                for (let v = 0; v <= d.expVoc + 0.05; v += 0.01) {
-                    vExp.push(v);
-                    let jVal = d.expJsc * (1 - Math.exp((v - d.expVoc) / (0.14 * d.expVoc)));
-                    jExp.push(jVal < 0 ? 0 : jVal);
-                }
-                expJvTraces.push({ x: vExp, y: jExp, name: d.name, mode: 'lines', line: { width: 2.5 } });
-            });
-
-            // Jika ada file eksperimen yang diupload
-            if (uploadedExpJvData) {
-                expJvTraces.unshift(uploadedExpJvData);
-            }
-
-            const jvLayout = {
-                autosize: true,
-                margin: { t: 10, b: 40, l: 40, r: 10 },
-                xaxis: { title: 'Voltage (V)' },
-                yaxis: { title: 'Current Density (mA/cm²)' },
-                legend: { orientation: 'h', y: -0.25, font: { size: 10 } }
-            };
-
-            Plotly.newPlot('simJvChart', simJvTraces, jvLayout, { responsive: true, displayModeBar: false });
-            Plotly.newPlot('expJvChart', expJvTraces, jvLayout, { responsive: true, displayModeBar: false });
-        }
-
-        // 3. PARSER AUTOMATIS FILE LOG TD-DFT / TXT SPECTRA
+        // 1. FILE PARSERS (TD-DFT LOG & J-V TXT/CSV)
         function parseTDDFTFile(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -216,10 +467,8 @@
                 const text = e.target.result;
                 let extractedLambda = 500, extractedF = 1.20;
 
-                // Cek format Gaussian Log/TXT (Excited State N: wavelength nm f=strength)
                 const excitedStateRegex = /Excited State\s+\d+:\s+[\w\.-]+\s+(\d+\.\d+)\s+nm\s+f=(\d+\.\d+)/g;
-                let match;
-                let maxF = 0, bestLambda = 500;
+                let match, maxF = 0, bestLambda = 500;
 
                 while ((match = excitedStateRegex.exec(text)) !== null) {
                     let wavelength = parseFloat(match[1]);
@@ -234,7 +483,6 @@
                     extractedLambda = bestLambda;
                     extractedF = maxF;
                 } else {
-                    // Cek jika format dua kolom TXT biasa (Wavelength Absorbance)
                     const lines = text.split('\n');
                     let maxAbs = 0, lambdaPeak = 500;
                     lines.forEach(line => {
@@ -254,32 +502,31 @@
                     }
                 }
 
-                // Tambahkan sebagai Dye baru hasil upload
-                dyesData.unshift({
+                moleculeDatabase.unshift({
                     name: `Uploaded (${file.name.slice(0, 10)})`,
+                    homo: -5.50, lumo: -2.90,
                     lambdaSim: Math.round(extractedLambda),
                     fSim: parseFloat(extractedF.toFixed(2)),
-                    lambdaExp: Math.round(extractedLambda - 10),
+                    lambdaExp: Math.round(extractedLambda - 8),
                     fExp: parseFloat((extractedF * 0.9).toFixed(2)),
                     simVoc: 0.85, simJsc: 20.0, simFF: 0.73,
-                    expVoc: 0.80, expJsc: 18.5, expFF: 0.68
+                    expVoc: 0.80, expJsc: 18.5, expFF: 0.68,
+                    transition: "HOMO -> LUMO (Calculated)"
                 });
 
-                renderAllCharts();
-                alert(`File TD-DFT Berhasil Diproses!\nPeak Lambda: ${extractedLambda.toFixed(1)} nm\nOscillator Strength (f): ${extractedF}`);
+                recalculateAllData();
+                alert(`Berkas TD-DFT Berhasil Diproses!\nPeak Wavelength: ${extractedLambda.toFixed(1)} nm\nOscillator Strength (f): ${extractedF}`);
             };
             reader.readAsText(file);
         }
 
-        // 4. PARSER DATA EKSPERIMEN J-V (CSV / TXT)
         function parseJVFile(event) {
             const file = event.target.files[0];
             if (!file) return;
 
             const reader = new FileReader();
             reader.onload = function(e) {
-                const text = e.target.result;
-                const lines = text.split('\n');
+                const lines = e.target.result.split('\n');
                 let xVals = [], yVals = [];
 
                 lines.forEach(line => {
@@ -296,28 +543,320 @@
 
                 if (xVals.length > 0) {
                     uploadedExpJvData = {
-                        x: xVals,
-                        y: yVals,
+                        x: xVals, y: yVals,
                         name: `Exp File (${file.name.slice(0, 8)})`,
                         mode: 'lines+markers',
                         marker: { size: 4 }
                     };
-                    generateJVPlots();
+                    generatePVPerformance();
                     alert(`Data J-V Berhasil Dipasang!\nJumlah Titik Data: ${xVals.length}`);
                 }
             };
             reader.readAsText(file);
         }
 
-        function renderAllCharts() {
-            generateSpectraPlots();
-            generateJVPlots();
+        // 2. MOLECULAR GALLERY HANDLERS
+        function handleMultiXyzUpload(event) {
+            const files = Array.from(event.target.files);
+            if (!files.length) return;
+
+            const gridContainer = document.getElementById('moleculeGrid');
+            gridContainer.innerHTML = '';
+
+            files.forEach((file, idx) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const canvasId = 'molCardCanvas_' + idx;
+                    const cardHtml = `
+                        <div class="border border-slate-200 rounded-lg p-3 bg-white shadow-sm text-center flex flex-col justify-between">
+                            <h5 class="text-xs font-bold text-blue-900 mb-2 truncate" title="${file.name}">${file.name}</h5>
+                            <div id="${canvasId}" class="w-full h-48 bg-slate-50 border rounded relative"></div>
+                        </div>
+                    `;
+                    gridContainer.insertAdjacentHTML('beforeend', cardHtml);
+
+                    setTimeout(() => {
+                        const elem = document.getElementById(canvasId);
+                        if (elem) {
+                            const viewer = $3Dmol.createViewer(elem, { backgroundColor: 'white' });
+                            viewer.addModel(e.target.result, 'xyz');
+                            viewer.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
+                            viewer.zoomTo();
+                            viewer.render();
+                        }
+                    }, 100);
+                };
+                reader.readAsText(file);
+            });
         }
 
-        // Trigger Render Saat DOM Selesai Dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            renderAllCharts();
-            window.addEventListener('resize', renderAllCharts);
+        function clearGallery() {
+            document.getElementById('multiXyzInput').value = '';
+            renderDefaultGallery();
+        }
+
+        function renderDefaultGallery() {
+            const gridContainer = document.getElementById('moleculeGrid');
+            gridContainer.innerHTML = moleculeDatabase.map((m, i) => `
+                <div class="border border-slate-200 rounded-lg p-3 bg-white shadow-sm text-center">
+                    <h5 class="text-xs font-bold text-blue-900 mb-2 truncate">${m.name}</h5>
+                    <div id="defaultMolCard_${i}" class="w-full h-48 bg-slate-50 border rounded relative"></div>
+                </div>
+            `).join('');
+
+            setTimeout(() => {
+                moleculeDatabase.forEach((m, i) => {
+                    const elem = document.getElementById(`defaultMolCard_${i}`);
+                    if(elem) {
+                        const viewer = $3Dmol.createViewer(elem, { backgroundColor: 'white' });
+                        viewer.addModel(defaultXyz, 'xyz');
+                        viewer.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
+                        viewer.zoomTo();
+                        viewer.render();
+                    }
+                });
+            }, 100);
+        }
+
+        // 3. FRONTIER ORBITAL FILE HANDLER
+        function loadHomoFile(event) { handleOrbitalFile(event.target.files[0], 'homoPlaceholder', 'homoImg', 'homo3dmol', 0.02, 'blue', 'red'); }
+        function loadLumoFile(event) { handleOrbitalFile(event.target.files[0], 'lumoPlaceholder', 'lumoImg', 'lumo3dmol', -0.02, 'cyan', 'orange'); }
+
+        function handleOrbitalFile(file, placeholderId, imgId, viewer3dId, isoval, c1, c2) {
+            if (!file) return;
+            const placeholder = document.getElementById(placeholderId);
+            const img = document.getElementById(imgId);
+            const div3d = document.getElementById(viewer3dId);
+
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    placeholder.classList.add('hidden');
+                    div3d.classList.add('hidden');
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    placeholder.classList.add('hidden');
+                    img.classList.add('hidden');
+                    div3d.classList.remove('hidden');
+                    div3d.innerHTML = '';
+                    
+                    const viewer = $3Dmol.createViewer(div3d, { backgroundColor: 'white' });
+                    viewer.addModel(e.target.result, "cube");
+                    viewer.setStyle({}, { stick: { radius: 0.12 } });
+                    viewer.addIsosurface(e.target.result, { isoval: Math.abs(isoval), color: c1, opacity: 0.7 });
+                    viewer.addIsosurface(e.target.result, { isoval: -Math.abs(isoval), color: c2, opacity: 0.7 });
+                    viewer.zoomTo();
+                    viewer.render();
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // 4. CHART GENERATORS (PLOTLY ENGINE)
+        function generateMOEnergyChart() {
+            let traces = [];
+            moleculeDatabase.forEach((m, idx) => {
+                const xPos = idx + 1;
+                const gap = m.lumo - m.homo;
+
+                traces.push({
+                    x: [xPos - 0.25, xPos + 0.25], y: [m.homo, m.homo],
+                    mode: 'lines+text', name: `${m.name} HOMO`,
+                    line: { color: '#1e40af', width: 4 },
+                    text: [`${m.homo.toFixed(2)} eV`, ''], textposition: 'bottom center'
+                });
+
+                traces.push({
+                    x: [xPos - 0.25, xPos + 0.25], y: [m.lumo, m.lumo],
+                    mode: 'lines+text', name: `${m.name} LUMO`,
+                    line: { color: '#dc2626', width: 4 },
+                    text: [`${m.lumo.toFixed(2)} eV`, ''], textposition: 'top center'
+                });
+
+                traces.push({
+                    x: [xPos, xPos], y: [m.homo + 0.05, m.lumo - 0.05],
+                    mode: 'lines+text', name: `${m.name} Egap`,
+                    line: { color: '#64748b', width: 1.5, dash: 'dot' },
+                    text: [`Eg = ${gap.toFixed(2)} eV`], textposition: 'middle right'
+                });
+            });
+
+            const config = { responsive: true, displayModeBar: false };
+            const layout = {
+                autosize: true, showlegend: false,
+                margin: { t: 25, b: 35, l: 45, r: 25 },
+                yaxis: { title: 'Energy (eV)' },
+                xaxis: { tickvals: moleculeDatabase.map((_, i) => i + 1), ticktext: moleculeDatabase.map(m => m.name.split(' ')[0]) }
+            };
+
+            Plotly.newPlot('moEnergyChart', traces, layout, config);
+        }
+
+        function generateReactivityTable() {
+            const tbody = document.getElementById('reactivityTableBody');
+            tbody.innerHTML = moleculeDatabase.map(m => {
+                const gap = m.lumo - m.homo;
+                const ip = -m.homo, ea = -m.lumo;
+                const chi = (ip + ea) / 2, eta = (ip - ea) / 2;
+                const omega = (chi * chi) / (2 * eta);
+
+                return `<tr class="hover:bg-slate-50">
+                    <td class="p-2.5 border font-semibold text-blue-900">${m.name}</td>
+                    <td class="p-2.5 border">${m.homo.toFixed(2)}</td>
+                    <td class="p-2.5 border">${m.lumo.toFixed(2)}</td>
+                    <td class="p-2.5 border font-bold text-blue-600">${gap.toFixed(2)}</td>
+                    <td class="p-2.5 border">${ip.toFixed(2)}</td>
+                    <td class="p-2.5 border">${ea.toFixed(2)}</td>
+                    <td class="p-2.5 border">${chi.toFixed(2)}</td>
+                    <td class="p-2.5 border">${eta.toFixed(2)}</td>
+                    <td class="p-2.5 border">${omega.toFixed(2)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function generateSpectraPlots() {
+            let simTraces = [], expTraces = [], lheTraces = [];
+            const opticalTbody = document.getElementById('opticalTableBody');
+            opticalTbody.innerHTML = '';
+
+            moleculeDatabase.forEach((m) => {
+                let x = [], ySim = [], yExp = [], lheY = [];
+                const sigma = 30; // Broadening (nm)
+
+                for (let w = 300; w <= 800; w += 2) {
+                    x.push(w);
+                    let simVal = m.fSim * Math.exp(-Math.pow((w - m.lambdaSim), 2) / (2 * Math.pow(sigma, 2)));
+                    let expVal = m.fExp * Math.exp(-Math.pow((w - m.lambdaExp), 2) / (2 * Math.pow(sigma, 2)));
+                    ySim.push(simVal);
+                    yExp.push(expVal);
+                    lheY.push(1 - Math.pow(10, -simVal));
+                }
+
+                simTraces.push({ x: x, y: ySim, name: m.name, mode: 'lines', line: { width: 2.5 } });
+                expTraces.push({ x: x, y: yExp, name: m.name, mode: 'lines', line: { width: 2.5 } });
+                lheTraces.push({ x: x, y: lheY, name: m.name, mode: 'lines', line: { width: 2.5 } });
+
+                const exEnergy = (1240 / m.lambdaSim).toFixed(2);
+                const lheMax = (1 - Math.pow(10, -m.fSim)).toFixed(3);
+
+                opticalTbody.innerHTML += `<tr class="hover:bg-slate-50">
+                    <td class="p-2.5 border font-semibold text-blue-900">${m.name}</td>
+                    <td class="p-2.5 border">${m.lambdaSim} nm</td>
+                    <td class="p-2.5 border">${m.lambdaExp} nm</td>
+                    <td class="p-2.5 border">${exEnergy} eV</td>
+                    <td class="p-2.5 border">${m.fSim.toFixed(2)}</td>
+                    <td class="p-2.5 border font-bold text-emerald-600">${lheMax}</td>
+                    <td class="p-2.5 border">${m.transition}</td>
+                </tr>`;
+            });
+
+            const layoutOpts = { 
+                autosize: true,
+                margin: { t: 10, b: 40, l: 40, r: 10 }, 
+                legend: { orientation: 'h', font: { size: 9 }, y: -0.25 },
+                xaxis: { title: 'Wavelength (nm)', range: [300, 800] },
+                yaxis: { title: 'Absorbance / Intensity' }
+            };
+            const config = { responsive: true, displayModeBar: false };
+
+            Plotly.newPlot('simAbsChart', simTraces, layoutOpts, config);
+            Plotly.newPlot('expAbsChart', expTraces, layoutOpts, config);
+            
+            let lheLayout = JSON.parse(JSON.stringify(layoutOpts));
+            lheLayout.yaxis.title = 'LHE Efficiency';
+            Plotly.newPlot('lheSpectraChart', lheTraces, lheLayout, config);
+        }
+
+        function generatePVPerformance() {
+            moleculeDatabase[0].simVoc = parseFloat(document.getElementById('simVoc').value) || 0.88;
+            moleculeDatabase[0].expVoc = parseFloat(document.getElementById('expVoc').value) || 0.82;
+            moleculeDatabase[0].simJsc = parseFloat(document.getElementById('simJsc').value) || 19.2;
+            moleculeDatabase[0].expJsc = parseFloat(document.getElementById('expJsc').value) || 17.8;
+            moleculeDatabase[0].simFF = parseFloat(document.getElementById('simFF').value) || 0.76;
+            moleculeDatabase[0].expFF = parseFloat(document.getElementById('expFF').value) || 0.71;
+
+            let simJvTraces = [], expJvTraces = [];
+            const tbody = document.getElementById('pvTableBody');
+            tbody.innerHTML = '';
+
+            moleculeDatabase.forEach(m => {
+                const simPce = m.simJsc * m.simVoc * m.simFF;
+                const expPce = m.expJsc * m.expVoc * m.expFF;
+
+                let vSim = [], jSim = [];
+                for (let v = 0; v <= m.simVoc + 0.05; v += 0.01) {
+                    vSim.push(v);
+                    let jVal = m.simJsc * (1 - Math.exp((v - m.simVoc) / (0.12 * m.simVoc)));
+                    jSim.push(jVal < 0 ? 0 : jVal);
+                }
+                simJvTraces.push({ x: vSim, y: jSim, name: m.name, mode: 'lines', line: { width: 2.5 } });
+
+                let vExp = [], jExp = [];
+                for (let v = 0; v <= m.expVoc + 0.05; v += 0.01) {
+                    vExp.push(v);
+                    let jVal = m.expJsc * (1 - Math.exp((v - m.expVoc) / (0.14 * m.expVoc)));
+                    jExp.push(jVal < 0 ? 0 : jVal);
+                }
+                expJvTraces.push({ x: vExp, y: jExp, name: m.name, mode: 'lines', line: { width: 2.5 } });
+
+                tbody.innerHTML += `<tr class="hover:bg-slate-50">
+                    <td class="p-2.5 border font-semibold text-blue-900">${m.name}</td>
+                    <td class="p-2 border">${m.simVoc.toFixed(2)}</td>
+                    <td class="p-2 border">${m.simJsc.toFixed(1)}</td>
+                    <td class="p-2 border">${m.simFF.toFixed(2)}</td>
+                    <td class="p-2 border font-bold text-emerald-700 bg-emerald-50">${simPce.toFixed(2)}%</td>
+                    <td class="p-2 border">${m.expVoc.toFixed(2)}</td>
+                    <td class="p-2 border">${m.expJsc.toFixed(1)}</td>
+                    <td class="p-2 border">${m.expFF.toFixed(2)}</td>
+                    <td class="p-2 border font-bold text-indigo-700 bg-indigo-50">${expPce.toFixed(2)}%</td>
+                </tr>`;
+            });
+
+            if (uploadedExpJvData) {
+                expJvTraces.unshift(uploadedExpJvData);
+            }
+
+            const layoutOpts = { 
+                autosize: true,
+                margin: { t: 10, b: 40, l: 40, r: 10 }, 
+                legend: { orientation: 'h', font: { size: 9 }, y: -0.25 },
+                xaxis: { title: 'Voltage (V)' },
+                yaxis: { title: 'Current Density (mA/cm²)' }
+            };
+            const config = { responsive: true, displayModeBar: false };
+
+            Plotly.newPlot('simJvChart', simJvTraces, layoutOpts, config);
+            Plotly.newPlot('expJvChart', expJvTraces, layoutOpts, config);
+        }
+
+        function triggerChartResize() {
+            const chartIds = ['moEnergyChart', 'simAbsChart', 'expAbsChart', 'lheSpectraChart', 'simJvChart', 'expJvChart'];
+            chartIds.forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.data) {
+                    Plotly.Plots.resize(elem);
+                }
+            });
+        }
+
+        function recalculateAllData() {
+            generateMOEnergyChart();
+            generateReactivityTable();
+            generateSpectraPlots();
+            generatePVPerformance();
+            setTimeout(triggerChartResize, 100);
+        }
+
+        // Inisialisasi Utama saat DOM Siap
+        document.addEventListener('DOMContentLoaded', function () {
+            renderDefaultGallery();
+            recalculateAllData();
+            window.addEventListener('resize', triggerChartResize);
         });
     </script>
 </body>
