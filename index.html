@@ -34,7 +34,6 @@
                 <p class="text-[11px] text-slate-500">In Silico Molecular Insights & Photovoltaic Screening Platform</p>
             </div>
             <nav class="hidden xl:flex space-x-1">
-                <a href="#importer" class="nav-link">Data Importer</a>
                 <a href="#lit-review" class="nav-link">Literature</a>
                 <a href="#background" class="nav-link">Background</a>
                 <a href="#computational" class="nav-link">DFT Details</a>
@@ -59,25 +58,6 @@
             <p class="text-slate-300 max-w-4xl mx-auto text-xs md:text-sm leading-relaxed mt-2">
                 A DFT/TD-DFT computational roadmap providing atomistic molecular insights, optoelectronic reactivity modeling, and experimental benchmarking to accelerate rational dye engineering for high-efficiency solar energy conversion.
             </p>
-        </section>
-
-        <!-- SECTION 0: DATA IMPORTER (TD-DFT & J-V) -->
-        <section id="importer" class="card bg-blue-50/50 border-blue-200">
-            <h3 class="text-md font-bold text-blue-900 border-b border-blue-200 pb-2 mb-4 flex items-center gap-2">
-                <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">↑</span> Data Importer (TD-DFT Log / Spectrum TXT / J-V Data)
-            </h3>
-            <div class="grid md:grid-cols-2 gap-6 text-xs">
-                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <label class="font-bold text-slate-800 block mb-1 uppercase">1. Upload File TD-DFT Output (.TXT / .LOG / .OUT)</label>
-                    <p class="text-[11px] text-slate-500 mb-2">Upload file log Gaussian/ORCA atau file teks berisi dua kolom ($\lambda$ dan $f$) untuk menghasilkan spectra otomatis.</p>
-                    <input type="file" id="tddftFileInput" accept=".txt,.log,.out,.csv" onchange="parseTDDFTFile(event)" class="w-full text-xs p-2 bg-slate-50 border border-slate-300 rounded">
-                </div>
-                <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <label class="font-bold text-slate-800 block mb-1 uppercase">2. Upload Data Eksperimen J-V (.TXT / .CSV)</label>
-                    <p class="text-[11px] text-slate-500 mb-2">Upload data mentah dua kolom: Voltage (V) dan Current Density (mA/cm²).</p>
-                    <input type="file" id="jvFileInput" accept=".txt,.csv" onchange="parseJVFile(event)" class="w-full text-xs p-2 bg-slate-50 border border-slate-300 rounded">
-                </div>
-            </div>
         </section>
 
         <!-- SECTION 1: LITERATURE REVIEW -->
@@ -329,6 +309,13 @@
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">7</span> Optical Properties, Absorption & LHE Spectra
             </h3>
 
+            <!-- TD-DFT UPLOADER (DIPINDAHKAN KE SINI) -->
+            <div class="bg-blue-50/60 p-4 rounded-lg border border-blue-200 mb-6 text-xs">
+                <label class="font-bold text-blue-900 block mb-1 uppercase">Upload File TD-DFT Output (.TXT / .LOG / .OUT)</label>
+                <p class="text-[11px] text-slate-600 mb-2">Upload file log Gaussian/ORCA atau file teks berisi dua kolom ($\lambda$ dan $f$) untuk menghasilkan spectra secara otomatis di bawah ini.</p>
+                <input type="file" id="tddftFileInput" accept=".txt,.log,.out,.csv" onchange="parseTDDFTFile(event)" class="w-full text-xs p-2 bg-white border border-slate-300 rounded shadow-sm">
+            </div>
+
             <!-- Formula -->
             <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
@@ -381,6 +368,13 @@
             <h3 class="text-md font-bold text-slate-900 border-b pb-2 mb-4 flex items-center gap-2">
                 <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center">8</span> Photovoltaic Performance & J-V Characterization
             </h3>
+
+            <!-- J-V FILE UPLOADER (DIPINDAHKAN KE SINI) -->
+            <div class="bg-blue-50/60 p-4 rounded-lg border border-blue-200 mb-6 text-xs">
+                <label class="font-bold text-blue-900 block mb-1 uppercase">Upload Data Eksperimen J-V (.TXT / .CSV)</label>
+                <p class="text-[11px] text-slate-600 mb-2">Upload data mentah dua kolom: Voltage (V) dan Current Density (mA/cm²) untuk langsung di-plot pada kurva J-V Eksperimen.</p>
+                <input type="file" id="jvFileInput" accept=".txt,.csv" onchange="parseJVFile(event)" class="w-full text-xs p-2 bg-white border border-slate-300 rounded shadow-sm">
+            </div>
 
             <!-- Photovoltaic Equations -->
             <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 text-xs space-y-2">
